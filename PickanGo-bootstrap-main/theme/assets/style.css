@@ -976,3 +976,282 @@ input[type=text], input[type=password] {
     display: none;
   }
 }
+
+
+/* Other pages */
+
+
+
+   /* Optional CSS styling */
+   .container-column {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #fff;
+    padding: 10px;
+    
+     background-color:#e5eaf5; 
+    
+}
+
+/* Style for individual buttons */
+
+.list-button{
+  display: block;
+  background-color: #ccdee9;
+  width: 300px;
+
+  
+}
+
+.list-button button {
+    
+    margin-bottom: 10px;
+    width: 275px;
+    padding: 20px;
+    background-color:#636363;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.list-button button:hover {
+    background-color:#000;
+}
+
+
+.new button {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  border: none;;
+  background-color: #ffffff00;
+}
+
+.new button:hover {
+  background-color:#726f6f;
+}
+
+.locationpic {
+border: 10px solid slategray;
+height: 80vh;
+
+}
+
+#hidesearch{
+display: none;
+}
+
+
+.message-list{
+display: flex;
+background-color: #fff;
+width: 300px;
+border: 2px solid #ccc;
+border-radius: 1.4%;
+justify-content: center;
+
+
+}
+
+.message-list h3{
+margin-top: 8px;
+}
+
+.message-list button {
+  
+  margin-bottom: 10px;
+  width: 275px;
+  padding: 20px;
+  background-color:#6a90c2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.message-list button:hover {
+  background-color:#477abd;
+}
+
+.messagechat {
+margin-top: 720px;
+width: 900px;
+margin-left: 130px;
+
+}
+
+.chat{
+width: 1150px;
+height: 100vh;
+border: 2px solid #ccc;
+background-color: #fff;
+border-radius: 1.7%;
+}
+
+.chat h2{
+margin-top: 30px;
+margin-right: 900px;
+}
+.chat h2 img{
+width: 80px;
+height: 80px;
+margin-right: 20px;
+}
+.bubble{
+margin-top: 20px;
+border: 1px solid #ccc;
+
+border-radius: 1.7%;
+
+}
+
+.lib-container{
+display: flex;
+justify-content: center;
+margin-top: 25px;
+background-image: url(../images/libpicture.png);
+background-size: cover;
+      
+  background-position: center;
+
+}
+
+.lib-container h1{
+margin-left: 480px;
+color: #fff;
+}
+.lib-bubble{
+min-width: 1300px; /* Minimum width for the container */
+  max-width: 1300px; /* Maximum width for the container */
+  min-height: 770px; /* Minimum height for the container */
+  border: 1px solid #ccc; /* Optional: Add a border for visual clarity */
+  border-radius: 1.7%;
+  padding: 20px; /* Optional: Add padding for spacing */
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next row */
+  justify-content: flex-start; /* Start a new row when needed */
+  align-content: flex-start; /* Align buttons at the top of each row */
+  background-color:  #f9f9f9;
+}
+
+
+.lib-items button{
+margin: 10px; /* Add margin around each button for spacing */
+border: 1px solid #ccc; /* Remove the button border */
+outline: none; /* Remove the button outline on focus (optional) */
+cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+padding: 0; /* Remove padding to make image fill the button */
+background: none; /* Remove any background color or image */
+margin-bottom: 100px;
+margin-right: 22px;
+}
+
+.lib-items img{
+width: 100%; /* Make the image width 100% of the button's width */
+  height: 100%; /* Make the image height 100% of the button's height */
+  object-fit: cover; /* Scale the image to cover the entire button */
+  object-position: center; /* Center the image within the button */
+}
+.lib-items input{
+display: flex;
+width: 280px ;
+align-items: flex-start;
+margin-left: 10px;
+height:30px;
+border: 1px solid black;
+border-radius: 6%;
+}
+
+/**/
+
+.lib-container2{
+display: flex;
+justify-content: center;
+margin-top: 25px;
+background-image: url(../images/libpicture.png);
+background-size: cover;
+      
+  background-position: center;
+
+}
+
+.lib-container2 h1{
+margin-left: 550px;
+color: #fff;
+}
+
+.lib-bubble2{
+min-width: 1300px; /* Minimum width for the container */
+  max-width: 1300px; /* Maximum width for the container */
+  min-height: 770px; /* Minimum height for the container */
+  border: 1px solid #ccc; /* Optional: Add a border for visual clarity */
+  border-radius: 1.7%;
+  padding: 20px; /* Optional: Add padding for spacing */
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap to the next row */
+  justify-content: center; /* Start a new row when needed */
+  align-content: center; /* Align buttons at the top of each row */
+  background-color:  #f9f9f9;
+  flex-direction: column;
+}
+
+
+.view-container {
+margin-top: 150px;
+border: 2px solid #ccc;
+border-radius: 1.5%;
+
+
+}
+
+.view-container img{
+width: 340px;
+}
+
+.description {
+margin-top: 10px;
+}
+
+#bsbar {
+margin-left: 20px;
+background-color: #74a2e7;
+}
+
+#bsbar:hover{
+background-color: #005092;
+}
+
+/* #resultsbod{
+display: flex;
+flex-direction: column;
+min-height: 400px;
+
+} */
+
+.card{
+display: flex;
+flex-direction: column;
+
+}
+
+@media (min-width: 768px) {
+.news-input {
+  width: 50%;
+}
+}
+
+.card-body img{
+max-width: 100%;
+}
+
+.dropdown-toggle::after {
+color: white; /* Change this to your desired color */
+}
+
+#usr3::after{
+color:#000;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>View Package</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ** CSS Plugins Needed for the Project ** -->
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <!--Favicon-->
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <!-- Main Stylesheet -->
+  <link href="assets/style.css" rel="stylesheet" media="screen" />
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+   <header class="shadow-bottom sticky-top bg-white">
+      <nav class="navbar navbar-expand-md navbar-light">
+          <div class="container">
+              <a class="navbar-brand px-2" href="index.html">Pick and Go</a>
+              <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+                  aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse text-center" id="navigation">
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                          <a class="nav-link text-dark" href="index.html">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-dark" href="library.html">My Library</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-dark" href="faq.html">How it works</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-dark" href="contact.html">Contact</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-dark" href="sign.html">Sign in</a>
+                      </li>
+                      <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+                          <strong class="text-dark">User</strong>
+                        </a>
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="usr3">
+                          <li><a class="dropdown-item" href="views.html">Tour Guide</a></li>
+                          <li><a class="dropdown-item" href="#">User</a></li>
+                          <li><a class="dropdown-item" href="#">Admin</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          
+                        </ul>
+                      </div>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </header>
+
+  <section
+  class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
+>
+  <div class="container" id="toptitle">
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h1><span class="text-light"> View </span></h1>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+ 
+ <!-- home section start -->
+ <section class="home py-5" id="home">
+    <div class="container-lg">
+        <div class="row min-vh-100 align-items-center align-content-center">
+            <div class="col-md-6 mt-5 mt-md-0">
+               <div class="home-img text-center">
+                  <img src="images/venice.jpg" class=" w-100 rounded-3" alt="profile img">
+               </div>
+            </div>
+            <div class="col-md-6 mt-5 mt-md-0 order-md-first">
+               <div class="home-text">
+                  <h1 class="text-dark text-uppercase fs-1 fw-bold">Name: <span class="text-secondary text-uppercase fs-1 fw-bold">Tour of New York City</span></h1>
+                  <h2 class="fs-4">New York City, New York</h2>
+                  <label for="pkgname" class="col-form-label">
+                    Included services:
+                  </label>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor metus nec neque viverra, vel venenatis augue venenatis. Nulla facilisi. Suspendisse at quam sed metus fringilla finibus. In hac habitasse platea dictumst. Vivamus et orci a nulla faucibus vehicula. Integer eget scelerisque neque. Nulla facilisi. Nulla ut eros eget metus congue facilisis in eu dolor
+                  </p>
+               </div>
+            </div>
+        </div>
+    </div>
+ </section>
+ <!-- home section end -->
+  
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
