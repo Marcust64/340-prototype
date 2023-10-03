@@ -811,7 +811,7 @@ code {
 
 .search-icon {
   position: absolute;
-  right: 20px;
+  right: 10px;
   top: 18px;
   font-size: 14px
 }
@@ -1258,4 +1258,12 @@ color:#000;
 
 #contact-page{
 	color: black;
+}
+
+.btn1{
+	 background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
 }
