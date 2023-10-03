@@ -1255,3 +1255,7 @@ color: white; /* Change this to your desired color */
 #usr3::after{
 color:#000;
 }
+
+#contact-page{
+	color: black;
+}
