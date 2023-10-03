@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>Pick and Go</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- ** CSS Plugins Needed for the Project ** -->
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <!--Favicon-->
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <!-- Main Stylesheet -->
+  <link href="assets/style.css" rel="stylesheet" media="screen" />
+</head>
+
+<body>
+  <!-- header -->
+  <header class="shadow-bottom sticky-top bg-white">
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container">
+        <a class="navbar-brand px-2" href="index.html">Pick and Go</a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="library.html">My Library</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="faq.html">How it works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="contact.html">Contact</a>
+            </li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" href="sign.html">Sign in</a>
+						</li>
+
+            <div class="dropdown">
+							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr2" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+								<strong class="text-light">Admin</strong>
+							</a>
+							<ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
+								<li><a class="dropdown-item" href="#">Tour Guide</a></li>
+								<li><a class="dropdown-item" href="#">User</a></li>
+								<li><a class="dropdown-item" href="faq.html">Admin</a></li>
+								<li><hr class="dropdown-divider"></li>
+							</ul>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- /header -->
+
+  <!-- faq -->
+  <section class="section pb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="section-title text-primary">Frequently Asked Questions</h2>
+
+          <!-- FAQ Form for Admin -->
+          <form id="faqForm">
+            <div class="form-group">
+              <label for="newQuestion">Add a New Question:</label>
+              <input type="text" class="form-control" id="newQuestion" placeholder="Enter your question" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+          <!-- accordion -->
+          <div id="accordion">
+            <!-- Existing FAQ items ... -->
+
+            <!-- Add new FAQ item here dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section pb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="section-title text-primary">Frequently Asked Questions</h2>
+          <!-- accordion -->
+          <div id="accordion">
+
+
+            <div class="card mb-4 rounded-0 shadow border-0">
+              <div class="card-header rounded-0 bg-white border p-0 border-0">
+                <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between" data-toggle="collapse"
+                  href="#will-updates-also-be-free">
+                  <span>Is this application free?</span> <i class="ti-plus text-primary text-right"></i>
+                </a>
+              </div>
+              <div id="will-updates-also-be-free" class="collapse" data-parent="#accordion">
+                <div class="card-body font-secondary text-color">Yes this application will be free,
+				 all you need to get started today is an email account to create an account!</div>
+              </div>
+            </div>
+
+
+            <div class="card mb-4 rounded-0 shadow border-0">
+              <div class="card-header rounded-0 bg-white border p-0 border-0">
+                <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between" data-toggle="collapse"
+                  href="#discounts-for-students-and-non-profit-organizations">
+                  <span>Does Pack and go have packages for every city across the world?</span> <i
+                    class="ti-plus text-primary text-right"></i>
+                </a>
+              </div>
+              <div id="discounts-for-students-and-non-profit-organizations" class="collapse" data-parent="#accordion">
+                <div class="card-body font-secondary text-color">No, Pack and Go will not have a package for EVERY city, 
+				however users are adding new packages each day. So if a city searched does not already have a package listed,
+				you could be the first to create one.</div>
+              </div>
+            </div>
+
+
+            <div class="card mb-4 rounded-0 shadow border-0">
+              <div class="card-header rounded-0 bg-white border p-0 border-0">
+                <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between" data-toggle="collapse"
+                  href="#i-need-something-unique-can-you-make-it">
+                  <span>Can any unauthorized user edit my package?</span> <i class="ti-plus text-primary text-right"></i>
+                </a>
+              </div>
+              <div id="i-need-something-unique-can-you-make-it" class="collapse" data-parent="#accordion">
+                <div class="card-body font-secondary text-color">Packages will have the option to be set 
+					to private or public. If the package is public, users will be able to add them and customize
+					them further as their own package.</div>
+              </div>
+            </div>
+
+
+            <div class="card mb-4 rounded-0 shadow border-0">
+              <div class="card-header rounded-0 bg-white border p-0 border-0">
+                <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between" data-toggle="collapse"
+                  href="#is-there-any-documentation-and-support">
+                  <span>What if I want to delete my account?</span> <i class="ti-plus text-primary text-right"></i>
+                </a>
+              </div>
+              <div id="is-there-any-documentation-and-support" class="collapse" data-parent="#accordion">
+                <div class="card-body font-secondary text-color">Send a request on our contact page with your information
+				for the request and an Administrator will contact you on the next steps.</div>
+              </div>
+            </div>
+
+
+            <div class="card mb-4 rounded-0 shadow border-0">
+              <div class="card-header rounded-0 bg-white border p-0 border-0">
+                <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between" data-toggle="collapse"
+                  href="#any-refunds">
+                  <span>Is there a rating system for the multiple packages?</span> <i class="ti-plus text-primary text-right"></i>
+                </a>
+              </div>
+              <div id="any-refunds" class="collapse" data-parent="#accordion">
+                <div class="card-body font-secondary text-color">Yes, packages will have a rating system which each city searched can 
+				be sorted by rating. You can also connect with other users with the comment section on any ramarks you may have on the package.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /faq -->
+
+  <!-- footer -->
+  <footer class="section pb-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8 text-md-left text-center">
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+          <ul class="list-inline">
+            <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+                  class="ti-facebook"></i></a></li>
+            <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+                  class="ti-twitter-alt"></i></a></li>
+            <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-github"></i></a>
+            </li>
+            <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+                  class="ti-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	<script>
+    // Handle the form submission for adding a new FAQ item
+    document.getElementById("faqForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const newQuestionInput = document.getElementById("newQuestion");
+      const newQuestion = newQuestionInput.value;
+
+      if (newQuestion) {
+        // Create a new FAQ item and append it to the accordion
+        const newFaqItem = createFaqItem(newQuestion);
+        const accordion = document.getElementById("accordion");
+        accordion.appendChild(newFaqItem);
+
+        // Clear the input field
+        newQuestionInput.value = "";
+      }
+    });
+
+    // Function to create a new FAQ item
+    function createFaqItem(question) {
+      const faqItem = document.createElement("div");
+      faqItem.classList.add("card", "mb-4", "rounded-0", "shadow", "border-0");
+
+      faqItem.innerHTML = `
+        <div class="card-header rounded-0 bg-white border p-0 border-0">
+          <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between" data-toggle="collapse" href="#faq-${Date.now()}">
+            <span>${question}</span> <i class="ti-plus text-primary text-right"></i>
+          </a>
+        </div>
+        <div id="faq-${Date.now()}" class="collapse" data-parent="#accordion">
+          <div class="card-body font-secondary text-color">This is the answer to the new question.</div>
+        </div>
+      `;
+
+      return faqItem;
+    }
+  </script>
+  </footer>
+  <!-- /footer -->
+
+  <!-- ** JS Plugins Needed for the Project ** -->
+  <!-- jquiry -->
+  <script src="plugins/jquery/jquery-1.12.4.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <!-- match-height JS -->
+  <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+  <!-- Main Script -->
+  <script src="assets/script.js"></script>
+</body>
+
+</html>
+
+</html>
