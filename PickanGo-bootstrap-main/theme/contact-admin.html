@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <title>Pick and Go</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- ** CSS Plugins Needed for the Project ** -->
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <!--Favicon-->
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <!-- Main Stylesheet -->
+  <link href="assets/style.css" rel="stylesheet" media="screen" />
+</head>
+
+<body>
+  <!-- header -->
+  <header class="shadow-bottom sticky-top bg-white">
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container">
+        <a class="navbar-brand px-2" href="index.html">Pick and Go</a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="library.html">My Library</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="faq.html">How it works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="contact.html">Contact</a>
+            </li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" href="sign.html">Sign in</a>
+						</li>
+
+            <div class="dropdown">
+							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+								<strong class="text-dark">Admin</strong>
+							</a>
+							<ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
+								<li><a class="dropdown-item" href="contact.html">Tour Guide</a></li>
+								<li><a class="dropdown-item" href="contact.html">User</a></li>
+								<li><a class="dropdown-item" href="#">Admin</a></li>
+								<li><hr class="dropdown-divider"></li>
+							</ul>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- /header -->
+
+  <!-- contact -->
+  <div id="intro2">
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="section-title text-primary">Speak with a Representative</h2>
+          <p id="contact-page">Complete the form with any problems or concerns and a repreresentative will reach out as soon as possible. </p>
+
+          <form action="#">
+            <input type="text" id="name" name="name" placeholder="Name" class="form-control mb-4 shadow rounded-0">
+            <input type="email" id="mail" name="mail" placeholder="Email" class="form-control mb-4 shadow rounded-0">
+            <input type="text" id="subject" name="subject" placeholder="subject"
+              class="form-control mb-4 shadow rounded-0">
+            <textarea name="message" id="message" placeholder="Message"
+              class="form-control mb-4 shadow rounded-0"></textarea>
+            <button type="submit" value="send" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+  <!-- /contact -->
+
+  <!-- footer -->
+  <footer class="section pb-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8 text-md-left text-center">
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+          <ul class="list-inline">
+            <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+                  class="ti-facebook"></i></a></li>
+            <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+                  class="ti-twitter-alt"></i></a></li>
+            <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i class="ti-github"></i></a>
+            </li>
+            <li class="list-inline-item"><a class="text-color d-inline-block p-2" href="#"><i
+                  class="ti-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /footer -->
+
+  <!-- ** JS Plugins Needed for the Project ** -->
+  <!-- jquiry -->
+  <script src="plugins/jquery/jquery-1.12.4.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <!-- match-height JS -->
+  <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+  <!-- Main Script -->
+  <script src="assets/script.js"></script>
+  <!-- Display Random Users and Tour Guides -->
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="section-title text-primary">Random Users and Tour Guides</h2>
+          <div id="randomUsers">
+            <!-- Random Users will be displayed here -->
+          </div>
+          <div id="randomGuides">
+            <!-- Random Tour Guides will be displayed here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ... (your existing footer and scripts) ... -->
+
+  <script>
+    // Generate random names for users and tour guides
+    function getRandomName() {
+      const names = ["Alice", "Bob", "Charlie", "David", "Emma", "Frank", "Grace", "Hannah", "Isaac", "Jack"];
+      const randomIndex = Math.floor(Math.random() * names.length);
+      return names[randomIndex];
+    }
+
+    // Create a random user or tour guide element
+    function createRandomElement(type, name) {
+      const element = document.createElement("div");
+      element.classList.add("mb-3");
+
+      // Create a card-like element
+      element.innerHTML = `
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">${type}: ${name}</h5>
+            <button class="btn btn-danger" onclick="removeElement(this)">Delete</button>
+          </div>
+        </div>
+      `;
+
+      return element;
+    }
+
+    // Add random users and tour guides to the page
+    const randomUsersContainer = document.getElementById("randomUsers");
+    const randomGuidesContainer = document.getElementById("randomGuides");
+
+    for (let i = 0; i < 5; i++) {
+      const userName = getRandomName();
+      const userElement = createRandomElement("User", userName);
+      randomUsersContainer.appendChild(userElement);
+    }
+
+    for (let i = 0; i < 3; i++) {
+      const guideName = getRandomName();
+      const guideElement = createRandomElement("Tour Guide", guideName);
+      randomGuidesContainer.appendChild(guideElement);
+    }
+
+    // Function to remove an element when the "Delete" button is clicked
+    function removeElement(button) {
+      const card = button.closest(".card");
+      if (card) {
+        card.remove();
+      }
+    }
+  </script>
+  
+</body>
+
+</html>
