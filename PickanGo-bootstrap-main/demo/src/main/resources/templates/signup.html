@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>Pick and Go</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- ** CSS Plugins Needed for the Project ** -->
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <!--Favicon-->
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <!-- Main Stylesheet -->
+  <link href="assets/style.css" rel="stylesheet" media="screen" />
+</head>
+
+<body>
+  <!-- header -->
+  <header class="shadow-bottom sticky-top bg-white">
+    <nav class="navbar navbar-expand-md navbar-light">
+      <div class="container">
+        <a class="navbar-brand px-2" href="index.html">Pick and Go</a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="library.html">My Library</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="faq.html">How it works</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="sign.html">Sign in</a>
+            </li>
+
+            <div class="dropdown">
+							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+								<strong class="text-dark">User/Admin</strong>
+							</a>
+							<ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
+								<li><a class="dropdown-item" href="#">Tour Guide</a></li>
+								<li><a class="dropdown-item" href="#">User</a></li>
+								<li><a class="dropdown-item" href="#">Admin</a></li>
+								<li><hr class="dropdown-divider"></li>
+							</ul>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- /header -->
+
+<div id="intro" class="bg-image shadow-2-strong">
+      <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-5 col-md-8">
+              <form class="bg-white  rounded-5 shadow-5-strong p-5">
+                <!-- Email input -->
+				<h2>Sign up</h2>
+                <div class="form-group">
+				 <form action="/signup" method="post">
+					<label for="username"><b>Email Address</b></label>
+					<input type="text" placeholder="Enter Email" name="email" required>
+					<label for="password"><b>Password</b></label>
+					<input type="password" placeholder="Enter Password" name="password" required>
+					<!--<label for="password"><b>Confirm Password</b></label>
+					<input type="password" placeholder="Enter Password" name="password" required>
+				<!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+				</form>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Background image -->
+</body>
+
+</html>
