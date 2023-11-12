@@ -1,5 +1,5 @@
 package com.pickandgo.demo.Security;
-
+/*
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,7 +19,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                     .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/", "/index", "/signup").hasAuthority("ANONYMOUS") // Allow access to these paths without authentication
+                    .requestMatchers("/", "/index", "/signup").hasAuthority("ANONYMOUS") 
 //                    .requestMatchers("/admin/**").hasRole("ADMIN") // Require ADMIN role for paths starting with /admin
 //                    .requestMatchers("/tourGuide/**").hasRole("TOUR_GUIDE") // Require TOUR_GUIDE role for paths starting with /tourGuide
                     .anyRequest().permitAll()// Require authentication for any other path
@@ -58,4 +58,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
+*/
