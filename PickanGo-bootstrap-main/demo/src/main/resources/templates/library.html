@@ -9,7 +9,7 @@
     <!-- ** CSS Plugins Needed for the Project ** -->
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
     <!-- themefy-icon -->
     <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
     <!--Favicon-->
@@ -19,7 +19,6 @@
     <!-- Main Stylesheet -->
     <link href="assets/style.css" rel="stylesheet" media="screen" />
 
-    <!--TESTING-->
     <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -119,7 +118,13 @@
     </div>
   </section>
 
-  <!-- Boxes -->
+  <!-- Container for Packages -->
+<div id="packagesContainer" class="row">
+  <!-- Cards will be added here dynamically -->
+</div>
+
+
+  <!-- Boxes 
   <section class="p-5" id="libbody">
     <div class="container">
       <div class="row text-center g-4">
@@ -165,6 +170,7 @@
       </div>
     </div>
   </section>
+  -->
 
     <div
       class="modal fade"
@@ -172,9 +178,10 @@
       tabindex="-1"
       aria-labelledby="createLabel"
       aria-hidden="true"
+      
     > 
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="createLabel">New Package</h5>
               <button
@@ -188,17 +195,24 @@
               <p class="lead">Fill All Fields</p>
               <form>
                 <div class="mb-3">
-                  <label for="pkgname" class="col-form-label">
+                  <label for="packageName" class="col-form-label">
                     Package Name:
                   </label>
-                  <input type="text" class="form-control" id="pkgname" />
+                  <input type="text" class="form-control" id="packageName" />
+                </div>
+
+                <div class="mb-3">
+                  <label for="locations" class="col-form-label">
+                    Location:
+                  </label>
+                  <input type="text" class="form-control" id="locations" />
                 </div>
                 
                 <div class="mb-3">
-                    <label for="pkgname" class="col-form-label">
+                    <label for="services" class="col-form-label">
                       Include your services:
                     </label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    <textarea class="form-control" id="services" rows="5"></textarea>
                   </div>
 
               </form>
@@ -211,7 +225,7 @@
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-primary" id="submitPackage">Submit</button>
             </div>
           </div>
       </div>
@@ -223,6 +237,7 @@
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"
   ></script>
+
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
 
   <script>
@@ -235,6 +250,72 @@
       zoom: 18,
     })
   </script>
+
+<script>
+  document.getElementById("submitPackage").addEventListener('click', function() {
+      const packageData = {
+          packageName: document.getElementById('packageName').value,
+          locations: document.getElementById('locations').value,
+          services: document.getElementById('services').value
+      };
+
+      fetch('/api/packages', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(packageData),
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log('Package created:', data);
+          // Close modal and update the package display
+          $('#create').modal('hide');
+          loadPackages(); // Refresh the package display dynamically
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+          // Optionally, display error message to user
+      });
+  });
+</script>
+
+
+<script>
+  function loadPackages() {
+    fetch('/api/packages')
+    .then(response => response.json())
+    .then(packages => {
+        const container = document.getElementById('packagesContainer');
+        container.innerHTML = ''; // Clear existing content
+
+        packages.forEach(pkg => {
+            const card = `
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">${pkg.packageName}</h5>
+                            <p class="card-text">${pkg.locations}</p>
+                            <p class="card-text">${pkg.services}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    })
+    .catch(error => console.error('Error fetching packages:', error));
+}
+
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    loadPackages();
+});
+
+</script>
+
         
 </body>
 

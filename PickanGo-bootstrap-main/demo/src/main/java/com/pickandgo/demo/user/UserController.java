@@ -2,7 +2,7 @@ package com.pickandgo.demo.user;
 
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,7 +20,7 @@ public class UserController {
     
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    //private PasswordEncoder passwordEncoder;
     
     @GetMapping("/sign")
     public String showSignInForm() {
@@ -45,11 +45,11 @@ public class UserController {
     @PostMapping("/signup")
     public String signUp(User user) {
         System.out.println("!!!!!");
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+       // user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         user.setTag("USER");
 
-        service.saveUser(user);
+        //service.saveUser(user);
         return "redirect:/sign";
     }
 
