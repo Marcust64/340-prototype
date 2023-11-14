@@ -3,11 +3,19 @@ package com.pickandgo.demo.packages;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.pickandgo.demo.packages.Packages;
+import com.pickandgo.demo.packages.PackagesService;
+
+import java.util.List;
 
 
 /**
@@ -20,6 +28,7 @@ public class PackagesController {
     @Autowired
     PackagesService packageService;
  
+
         @GetMapping("/user/library-user")
         public String getAllPackages(Model model) {
         model.addAttribute("packageList",
@@ -35,14 +44,7 @@ public class PackagesController {
         model.addAttribute("keyword", keyword);
         return "user/library-user";
     }
-/*
-    @GetMapping("/user/id={packageId}")
-    public String getPackage(@PathVariable long packageId, Model model) {
-        model.addAttribute("product",
-                packageService.getPackage(packageId));
-        return "product/views-user";
-    }
-*/
+
     @GetMapping("/user/delete/id={packageId}")
     public String deletePackage(@PathVariable long packageId, Model model) {
         packageService.deletePackage(packageId);
@@ -55,7 +57,7 @@ public class PackagesController {
     }
     
     @PostMapping("/package/create")
-    public String createPackage(Packages packages) {
+    public String createUserPackage(Packages packages) {
         
         packageService.savePackage(packages);
         return "redirect:/user/library-user";
@@ -66,6 +68,33 @@ public class PackagesController {
         model.addAttribute("package",
                 packageService.getPackage(packageId));
         return "user/views-user";
+
+    }
+
+    // Method to handle the creation of a new package
+    @PostMapping("/api/packages")
+    public ResponseEntity<Packages> createPackage(@RequestBody Packages packages) {
+        try {
+            Packages newPackage = packageService.savePackage(packages);
+            return new ResponseEntity<>(newPackage, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // Method to retrieve all packages
+    @GetMapping("/api/packages")
+    public ResponseEntity<List<Packages>> getAllPackages() {
+        try {
+            List<Packages> packages = packageService.getAllPackages();
+            if (packages.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(packages, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
     
     @PostMapping("/update/id={packageId}")

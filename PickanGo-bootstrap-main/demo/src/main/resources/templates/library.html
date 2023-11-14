@@ -195,24 +195,24 @@
               <p class="lead">Fill All Fields</p>
               <form>
                 <div class="mb-3">
-                  <label for="packageName" class="col-form-label">
+                  <label for="inputName" class="col-form-label">
                     Package Name:
                   </label>
-                  <input type="text" class="form-control" id="packageName" />
+                  <input type="text" class="form-control" name="name"  id="inputName"/>
                 </div>
 
                 <div class="mb-3">
-                  <label for="locations" class="col-form-label">
+                  <label for="inputCity" class="col-form-label">
                     Location:
                   </label>
-                  <input type="text" class="form-control" id="locations" />
+                  <input type="text" class="form-control" name="city" id="inputCity" />
                 </div>
                 
                 <div class="mb-3">
-                    <label for="services" class="col-form-label">
+                    <label for="inputDescription" class="col-form-label">
                       Include your services:
                     </label>
-                    <textarea class="form-control" id="services" rows="5"></textarea>
+                    <textarea class="form-control" name="description" id="inputDescription" rows="5"></textarea>
                   </div>
 
               </form>
@@ -254,9 +254,9 @@
 <script>
   document.getElementById("submitPackage").addEventListener('click', function() {
       const packageData = {
-          packageName: document.getElementById('packageName').value,
-          locations: document.getElementById('locations').value,
-          services: document.getElementById('services').value
+          name: document.getElementById('inputName').value,
+          city: document.getElementById('inputCity').value,
+          description: document.getElementById('inputDescription').value
       };
 
       fetch('/api/packages', {
@@ -294,9 +294,9 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">${pkg.packageName}</h5>
-                            <p class="card-text">${pkg.locations}</p>
-                            <p class="card-text">${pkg.services}</p>
+                            <h5 class="card-title">${pkg.name}</h5>
+                            <p class="card-text">${pkg.city}</p>
+                            <p class="card-text">${pkg.description}</p>
                         </div>
                     </div>
                 </div>

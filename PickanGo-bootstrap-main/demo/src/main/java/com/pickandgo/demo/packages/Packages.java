@@ -25,9 +25,28 @@ import lombok.Setter;
 public class Packages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "package_id")
     private long packageId;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "description")
     private String description;
+
+
+    @Override
+    public String toString() {
+        return "Packages{" +
+               "id=" + packageId +
+               ", name='" + name + '\'' +
+               ", location='" + city + '\'' +
+               ", services='" + description +
+               '}';
+    }
 
 }

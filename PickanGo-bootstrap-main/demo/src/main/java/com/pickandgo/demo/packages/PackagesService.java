@@ -1,26 +1,37 @@
 package com.pickandgo.demo.packages;
 
-import java.util.List;
+import com.pickandgo.demo.packages.Packages;
+import com.pickandgo.demo.packages.PackagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Marcus Thompson
- */
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class PackagesService {
+
     @Autowired
     private PackagesRepository repo;
+
 
     /**
      * Get all packages.
      *
      * @return the list of products.
      */
+
+    // Save a new package
+    public Packages savePackage(Packages packages) {
+        return repo.save(packages);
+    }
+
+    // Get all packages
+
     public List<Packages> getAllPackages() {
         return repo.findAll();
     }
+
 
     /**
      * Get all packages that match the keyword.
@@ -53,13 +64,34 @@ public class PackagesService {
     public void deletePackage(long packageId) {
         repo.deleteById(packageId);
     }
+}
 
     /**
      * Save a package entry.
      *
      * @param packages
      */
-    void savePackage(Packages packages) {
+     /*
+     void savePackage(Packages packages) {
         repo.save(packages);
+     }
+  
+    Get a package by ID
+    public Optional<Packages> getPackageById(Long id) {
+        return packagesRepository.findById(id);
     }
+
+    // Update a package
+    public Packages updatePackage(Packages packages) {
+        return packagesRepository.save(packages);
+    }
+
+    // Delete a package
+    public void deletePackage(Long id) {
+        packagesRepository.deleteById(id);
+
+    }
+
+    // Additional methods as per your application's requirement
 }
+*/
