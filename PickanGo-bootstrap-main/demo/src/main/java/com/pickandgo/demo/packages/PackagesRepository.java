@@ -13,7 +13,7 @@ public interface PackagesRepository extends JpaRepository<Packages, Long> {
     
      public List<Packages> findByName(String name);
 
-   // @Query("SELECT p FROM Packages p WHERE CONCAT(p.name, p.type) LIKE %?1%")
-    //public List<Packages> search(String keyword);
+   @Query("SELECT p FROM Packages p WHERE CONCAT(p.name, p.city) LIKE %?1%")
+    public List<Packages> search(String keyword);
     
 }

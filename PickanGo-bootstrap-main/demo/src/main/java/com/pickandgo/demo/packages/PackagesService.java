@@ -14,7 +14,7 @@ public class PackagesService {
     private PackagesRepository repo;
 
     /**
-     * Get all products.
+     * Get all packages.
      *
      * @return the list of products.
      */
@@ -23,20 +23,20 @@ public class PackagesService {
     }
 
     /**
-     * Get all products that match the keyword.
+     * Get all packages that match the keyword.
      *
      * @param keyword the search term.
      * @return the list of products.
      */
-  /*  public List<Packages> getAllPackages(String keyword) {
+   public List<Packages> getAllPackages(String keyword) {
         if (keyword != null) {
             return repo.search(keyword);
         }
         return repo.findAll();
     }
-*/
+
     /**
-     * Get a single product by ID
+     * Get a single package by ID
      *
      * @param packageId
      * @return the product
@@ -46,7 +46,7 @@ public class PackagesService {
     }
 
     /**
-     * Delete a single product by ID
+     * Delete a single package by ID
      *
      * @param packageId
      */
@@ -55,7 +55,7 @@ public class PackagesService {
     }
 
     /**
-     * Save a product entry.
+     * Save a package entry.
      *
      * @param packages
      */
