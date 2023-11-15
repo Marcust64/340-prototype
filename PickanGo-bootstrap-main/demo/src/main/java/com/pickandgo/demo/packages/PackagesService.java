@@ -1,7 +1,7 @@
 package com.pickandgo.demo.packages;
 
-import com.pickandgo.demo.packages.Packages;
-import com.pickandgo.demo.packages.PackagesRepository;
+// import com.pickandgo.demo.packages.Packages;
+// import com.pickandgo.demo.packages.PackagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +39,4 @@ public class PackagesService {
         packagesRepository.deleteById(id);
     }
 
-    // Additional methods as per your application's requirement
 }

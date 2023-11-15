@@ -1,34 +1,19 @@
 package com.pickandgo.demo.packages;
 
-import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.pickandgo.demo.packages.Packages;
-import com.pickandgo.demo.packages.PackagesService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-/**
- *
- * @author Marcus Thompson
- */
 @Controller
 @RequestMapping("/api/packages")
 public class PackagesController {
     
     @Autowired
-    PackagesService packageService;
- 
-   
+    private PackagesService packageService;
 
     // Method to handle the creation of a new package
     @PostMapping
@@ -54,5 +39,15 @@ public class PackagesController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-     
+
+    // Method to delete a package by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deletePackage(@PathVariable Long id) {
+        try {
+            packageService.deletePackage(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

@@ -25,7 +25,7 @@ import lombok.Setter;
 public class Packages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    
     @Column(name = "package_id")
     private long packageId;
 
@@ -35,8 +35,17 @@ public class Packages {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "contact")
+    private String contact;
+
+    @Column(name = "capacity")
+    private int capacity;
+
     @Column(name = "description")
     private String description;
+
+    @Column(name = "service")
+    private String service;
 
 
     @Override
