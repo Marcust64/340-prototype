@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+
 
 import java.util.List;
 
@@ -13,10 +15,10 @@ import java.util.List;
 public class PackagesController {
     
     @Autowired
-<<<<<<< HEAD
+//<<<<<<< HEAD
     private PackagesService packageService;
-=======
-    PackagesService packageService;
+//=======
+   // PackagesService packageService;
  
 
         @GetMapping("/user/library-user")
@@ -60,10 +62,10 @@ public class PackagesController {
         return "user/views-user";
 
     }
->>>>>>> 9a4ba679386cb4af772dc7f91700aca37c250e63
+//>>>>>>> 9a4ba679386cb4af772dc7f91700aca37c250e63
 
     // Method to handle the creation of a new package
-    @PostMapping("/api/packages")
+    @PostMapping("/api/packages/create")
     public ResponseEntity<Packages> createPackage(@RequestBody Packages packages) {
         try {
             Packages newPackage = packageService.savePackage(packages);
@@ -85,7 +87,6 @@ public class PackagesController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
     
     @PostMapping("/update/id={packageId}")
@@ -119,10 +120,10 @@ public class PackagesController {
     public String showSignInForm(){
         return "user/sign-user";
     }
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
     // Method to delete a package by ID
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/packages/{id}")
     public ResponseEntity<HttpStatus> deletePackage(@PathVariable Long id) {
         try {
             packageService.deletePackage(id);
@@ -130,11 +131,12 @@ public class PackagesController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-=======
+    }
+//=======
      
     @GetMapping("/user/views-user")
     public String showEditForm(){
         return "user/views-user";
->>>>>>> 9a4ba679386cb4af772dc7f91700aca37c250e63
+//>>>>>>> 9a4ba679386cb4af772dc7f91700aca37c250e63
     }
 }
