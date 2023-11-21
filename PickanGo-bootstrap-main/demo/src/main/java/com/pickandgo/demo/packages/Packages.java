@@ -50,12 +50,16 @@ public class Packages {
 
     @Override
     public String toString() {
-        return "Packages{" +
-               "id=" + packageId +
-               ", name='" + name + '\'' +
-               ", location='" + city + '\'' +
-               ", services='" + description +
-               '}';
-    }
+        return "Package{" +
+            "packageId=" + packageId +
+            ", name='" + name + '\'' +
+            ", city='" + city + '\'' +
+            ", contact='" + contact + '\'' +
+            ", capacity=" + capacity +
+            ", description='" + description + '\'' +
+            ", service='" + service + '\'' +
+            '}';
+}
+
 
 }

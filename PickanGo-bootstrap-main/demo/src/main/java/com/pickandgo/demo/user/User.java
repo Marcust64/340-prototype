@@ -27,9 +27,28 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "user_id")
     private long userId;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "tag")
     private String tag;
+
+    @Column(name = "password")
     private String password;
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+           "userId=" + userId +
+           ", email='" + email + '\'' +
+           ", tag='" + tag + '\'' +
+           '}';
+}
+
 
 }
