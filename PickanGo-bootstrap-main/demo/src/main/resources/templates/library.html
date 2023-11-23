@@ -193,7 +193,7 @@
             </div>
             <div class="modal-body">
               <p class="lead">Fill All Fields</p>
-              <form>
+              <form action="/api/packages/create" method="post">
 
               
                 <div class="mb-3">
@@ -236,7 +236,7 @@
                     <textarea class="form-control" name="service" id="inputService" rows="5"></textarea>
                   </div>
 
-              </form>
+              
             </div>
             <div class="modal-footer">
               <button
@@ -246,8 +246,9 @@
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary" id="submitPackage">Submit</button>
+              <button type="submit" class="btn btn-primary" id="submitPackage">Submit</button>
             </div>
+          </form>
           </div>
       </div>
 </div>
@@ -261,65 +262,10 @@
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
 
-  <script>
-    mapboxgl.accessToken =
-      'pk.eyJ1IjoiYnRyYXZlcnN5IiwiYSI6ImNrbmh0dXF1NzBtbnMyb3MzcTBpaG10eXcifQ.h5ZyYCglnMdOLAGGiL1Auw'
-    var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-71.060982, 42.35725],
-      zoom: 18,
-    })
-  </script>
-
-<script>
-  document.getElementById("submitPackage").addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent default form submission
-
-      const packageData = {
-          name: document.getElementById('inputName').value,
-          city: document.getElementById('inputCity').value,
-          capacity: document.getElementById('inputCapacity').value,
-          contact: document.getElementById('inputContact').value,
-          description: document.getElementById('inputDescription').value,
-          service: document.getElementById('inputService').value
-      };
-
-      fetch('/api/packages/create', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(packageData),
-      })
-      .then(response => {
-          if (response.ok) {
-              return response.json();
-          } else {
-              throw new Error('Network response was not ok.');
-          }
-      })
-      .then(data => {
-          console.log('Package created:', data);
-
-          // Bootstrap modal hide
-          var createModal = new bootstrap.Modal(document.getElementById('create'));
-          createModal.hide();
-
-          // Add event listener for when the modal is hidden, then reload
-          $('#create').on('hidden.bs.modal', function () {
-              window.location.reload();
-          });
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-          // Optionally, display an error message to the user
-      });
-  });
-</script>
 <!--  GoogleMapsAPI for auto complete
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7iHWNKRtHYhWXAciNjGRrroUyyE3N8Nk&libraries=places&callback=initAutocomplete" async defer></script>
-
+-->
+<!--
 <script>
   function initAutocomplete() {
     var input = document.getElementById('inputCity');

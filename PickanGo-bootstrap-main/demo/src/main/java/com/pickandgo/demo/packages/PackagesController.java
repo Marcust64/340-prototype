@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
 
@@ -66,12 +67,32 @@ public class PackagesController {
 
     // Method to handle the creation of a new package
     @PostMapping("/api/packages/create")
-    public ResponseEntity<Packages> createPackage(@RequestBody Packages packages) {
+    public String createPackage(@RequestParam String name, 
+                                @RequestParam String city,
+                                @RequestParam int capacity,
+                                @RequestParam String contact,
+                                @RequestParam String description,
+                                @RequestParam String service,
+                                RedirectAttributes redirectAttributes) {
         try {
-            Packages newPackage = packageService.savePackage(packages);
-            return new ResponseEntity<>(newPackage, HttpStatus.CREATED);
+            Packages newPackage = new Packages();
+            newPackage.setName(name);
+            newPackage.setCity(city);
+            newPackage.setCapacity(capacity);
+            newPackage.setContact(contact);
+            newPackage.setDescription(description);
+            newPackage.setService(service);
+
+            Packages savedPackage = packageService.savePackage(newPackage);
+            
+            
+            redirectAttributes.addFlashAttribute("message", "Package created successfully!");
+
+            // Redirect to the library page
+            return "redirect:/library";
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            redirectAttributes.addFlashAttribute("error", "Error creating package");
+            return "redirect:/library"; // or wherever you want to redirect in case of error
         }
     }
 
