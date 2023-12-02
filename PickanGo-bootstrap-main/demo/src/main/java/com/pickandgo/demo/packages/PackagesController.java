@@ -51,10 +51,11 @@ public class PackagesController {
     
     @PostMapping("/package/create")
     public String createUserPackage(Packages packages) {
-        
-        packageService.savePackage(packages);
-        return "redirect:/user/library-user";
-    }
+    // Save the package
+    packageService.savePackage(packages);
+
+    return "redirect:/user/library-user";
+   }
 
     @GetMapping("/user/update/id={packageId}")
     public String updatePackageForm(@PathVariable long packageId, Model model) {

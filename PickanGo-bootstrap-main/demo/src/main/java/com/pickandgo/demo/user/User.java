@@ -1,5 +1,4 @@
 package com.pickandgo.demo.user;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,26 +10,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- *
- * @author Marcus Thompson
- */
-
 @Entity
 @Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-
 public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "user_id")
     private long userId;
 
+    
     @Column(name = "email")
     private String email;
 
@@ -40,7 +33,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -48,7 +40,5 @@ public class User {
            ", email='" + email + '\'' +
            ", tag='" + tag + '\'' +
            '}';
-}
-
-
+    }
 }

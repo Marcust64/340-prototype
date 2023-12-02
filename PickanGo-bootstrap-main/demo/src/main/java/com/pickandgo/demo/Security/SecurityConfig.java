@@ -1,63 +1,66 @@
 package com.pickandgo.demo.Security;
-/*
+
+//import com.pickandgo.demo.user.CustomUserDetailsService;
+import com.pickandgo.demo.user.CustomUserDetailsService;
+import jakarta.servlet.DispatcherType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 @Configuration
-@EnableWebSecurity
+
+@ComponentScan("com.pickandgo.demo.user")
 public class SecurityConfig {
- 
+
+    @Autowired
+    CustomUserDetailsService service;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
+        requestCache.setMatchingRequestParameterName(null);
         http
-                    .authorizeHttpRequests((authorize) -> authorize
-                    .requestMatchers("/", "/index", "/signup").hasAuthority("ANONYMOUS") 
-//                    .requestMatchers("/admin/**").hasRole("ADMIN") // Require ADMIN role for paths starting with /admin
-//                    .requestMatchers("/tourGuide/**").hasRole("TOUR_GUIDE") // Require TOUR_GUIDE role for paths starting with /tourGuide
-                    .anyRequest().permitAll()// Require authentication for any other path
-            )
-            .formLogin(formLogin ->
-                formLogin
-                    .loginPage("/sign")
-                    .permitAll()
-            )
-            .logout(logout ->
-                logout
-                    .permitAll()
-            );
+               
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((authorize) -> authorize
+				.requestMatchers("/", "/sign", "/index","/signup", "/user/index-user").permitAll()
+                                //.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+				.anyRequest().authenticated()
+			)
+			.formLogin()
+                        .loginPage("/sign")
+                        .loginProcessingUrl("/sign") // Add this line to specify the processing URL
+                        .defaultSuccessUrl("/index", true)
+                        .and()
+                        .logout()
+                        .permitAll();
 
-        return http.build();
-    }
+                        return http.build();
+                
+    }           
+                
+    
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails admin = createUser("admin@example.com", "ADMIN", "admin");
-        UserDetails tourGuide = createUser("tourguide@example.com", "TOUR_GUIDE", "tourguide");
-        UserDetails tourist = createUser("tourist@example.com", "TOURIST", "tourist");
-
-        return new InMemoryUserDetailsManager(admin, tourGuide, tourist);
-    }
-
-    private UserDetails createUser(String email, String role, String password) {
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(email)
-                .password(passwordEncoder().encode(password))
-                .roles(role)
-                .build();
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(service).passwordEncoder(
+                passwordEncoder());
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
+    
 
 }
-*/

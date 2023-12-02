@@ -11,11 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- *
- * @author Marcus Thompson
- */
-
 @Entity
 @Table(name = "package")
 @NoArgsConstructor
@@ -25,10 +20,10 @@ import lombok.Setter;
 public class Packages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     @Column(name = "package_id")
     private long packageId;
-
+    
+  
     @Column(name = "name")
     private String name;
 
@@ -47,7 +42,6 @@ public class Packages {
     @Column(name = "service")
     private String service;
 
-
     @Override
     public String toString() {
         return "Package{" +
@@ -59,7 +53,5 @@ public class Packages {
             ", description='" + description + '\'' +
             ", service='" + service + '\'' +
             '}';
-}
-
-
+    }
 }

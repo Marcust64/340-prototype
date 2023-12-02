@@ -77,6 +77,7 @@
   <div class="modal-body">
               <p class="lead">Fill In All Fields</p>
               <form action="/package/create" method="post">
+			  <input type="hidden" name="userId" th:value="${userId}" />
                 <div class="mb-3">
                   <label for="pkgname" class="col-form-label">
                     Package Name:

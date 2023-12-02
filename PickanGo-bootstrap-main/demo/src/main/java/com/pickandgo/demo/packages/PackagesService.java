@@ -1,12 +1,9 @@
 package com.pickandgo.demo.packages;
 
-// import com.pickandgo.demo.packages.Packages;
-// import com.pickandgo.demo.packages.PackagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PackagesService {
@@ -65,32 +62,3 @@ public class PackagesService {
         repo.deleteById(packageId);
     }
 }
-
-    /**
-     * Save a package entry.
-     *
-     * @param packages
-     */
-     /*
-     void savePackage(Packages packages) {
-        repo.save(packages);
-     }
-  
-    Get a package by ID
-    public Optional<Packages> getPackageById(Long id) {
-        return packagesRepository.findById(id);
-    }
-
-    // Update a package
-    public Packages updatePackage(Packages packages) {
-        return packagesRepository.save(packages);
-    }
-
-    // Delete a package
-    public void deletePackage(Long id) {
-        packagesRepository.deleteById(id);
-
-    }
-
-}
-*/

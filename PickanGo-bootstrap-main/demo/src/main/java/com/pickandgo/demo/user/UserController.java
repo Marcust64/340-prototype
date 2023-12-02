@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,40 +27,42 @@ public class UserController {
     private UserService service;
     
 
-    //@Autowired
-    //private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     
     @GetMapping("/sign")
-    public String showSignInForm() {
-//        User sample = new User(1, "s@com", "ADMIN", "123");
-//        sample.setPassword(passwordEncoder.encode(sample.getPassword()));
-//        service.saveUser(sample);        
+    public String showSignInForm() {      
         return "sign";
     }
-
+    /*
     @PostMapping("/sign")
     public String signIn(@ModelAttribute("user") User user) {
         service.findByEmail(user.getEmail());
-        System.out.println("HERE");
         return "redirect:/index";
     }
-
+*/
     @GetMapping("/signup")
     public String showSignUpForm(Model model) {        
         return "signup";
     }
+    
+    @GetMapping("/index")
+    public String showIndexForm(Model model) {        
+        return "index";
+    }
 
-    // @PostMapping("/signup")
-    // public String signUp(User user) {
-    //     System.out.println("!!!!!");
-    //    // user.setPassword(passwordEncoder.encode(user.getPassword()));
+     @PostMapping("/signup")
+     public String signUp(User user) {
+         
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-    //     //user.setTag("USER");
+        user.setTag("USER");
+        
+        service.saveUser(user);
 
-    //     //service.saveUser(user);
-    //     return "redirect:/sign";
-    // }
-
+       return "redirect:/sign";
+     }
+    /*
     // Method to handle the creation of a new package
     @PostMapping("/signup")
     public String createUser(@RequestParam String email, 
@@ -84,8 +87,6 @@ public class UserController {
             redirectAttributes.addFlashAttribute("error", "Error creating user");
             return "redirect:/index"; // or wherever you want to redirect in case of error
         }
-    }
-
-    
+        */ 
 
 }
