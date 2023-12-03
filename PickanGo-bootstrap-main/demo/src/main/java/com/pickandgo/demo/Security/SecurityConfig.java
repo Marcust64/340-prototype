@@ -1,25 +1,26 @@
 package com.pickandgo.demo.Security;
 
-//import com.pickandgo.demo.user.CustomUserDetailsService;
 import com.pickandgo.demo.user.CustomUserDetailsService;
-import jakarta.servlet.DispatcherType;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 @Configuration
-
-@ComponentScan("com.pickandgo.demo.user")
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
@@ -33,21 +34,45 @@ public class SecurityConfig {
                
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-				.requestMatchers("/", "/sign", "/index","/signup", "/user/index-user").permitAll()
-                                //.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+				.requestMatchers("/", "/sign", "/index","/signup", "/user/index-user", "/plugins/**", "/assets/**", "/images/**").permitAll()
+                                .requestMatchers("/user/**").hasAuthority("USER")
+                                .requestMatchers("/TourGuide/**").hasAuthority("TOURGUIDE")
+                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
 				.anyRequest().authenticated()
 			)
-			.formLogin()
-                        .loginPage("/sign")
-                        .loginProcessingUrl("/sign") // Add this line to specify the processing URL
-                        .defaultSuccessUrl("/index", true)
+                        .formLogin()
+			.loginPage("/sign")
+                        .loginProcessingUrl("/sign")
+                        .usernameParameter("email")
+                        .passwordParameter("password")
+                        .successHandler((request, response, authentication) -> {
+                        handleSuccessRedirect(request, response, authentication);
+                        })
                         .and()
                         .logout()
                         .permitAll();
 
                         return http.build();
                 
-    }           
+    }  
+    
+    private void handleSuccessRedirect(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        String defaultSuccessUrl = determineDefaultSuccessUrl(authorities);
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + defaultSuccessUrl));
+    }
+    
+    private String determineDefaultSuccessUrl(Collection<? extends GrantedAuthority> authorities) {
+        if (authorities.stream().anyMatch(auth -> auth.getAuthority().equals("USER"))) {
+            return "/user/index-user";
+        } else if (authorities.stream().anyMatch(auth -> auth.getAuthority().equals("TOURGUIDE"))) {
+            return "/TourGuide/index";
+        } else if (authorities.stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN"))) {
+            return "/Admin/index";
+        } else {
+            return "/";
+        }
+    }
                 
     
 
@@ -60,7 +85,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
     
 
 }

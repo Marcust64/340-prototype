@@ -1,7 +1,9 @@
 package com.pickandgo.demo.user;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,8 +24,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         ArrayList<SimpleGrantedAuthority> authList = new ArrayList<>();
         authList.add(new SimpleGrantedAuthority(user.getTag()));
+        
 
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(), user.getPassword(), authList);
     }
+    
+   
 }

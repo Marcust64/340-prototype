@@ -21,25 +21,8 @@ public class UserService {
     @Autowired
     UserRepository repo;
 
-   // @Autowired
-    //PasswordEncoder passwordEncoder;
 
-//    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
-//         User user = repo.findByEmail(email);
-
-//         List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(user.getTag());
-        
-//         return new org.springframework.security.core.userdetails.User(
-//                 user.getEmail(), user.getPassword(), authorities);
-//     }
-
-//     public void saveUser(User user) {
-//         System.out.println("@@@@@");
-//         user.setPassword(passwordEncoder.encode(user.getPassword()));
-//         repo.save(user);
-//     }
-
-    public User findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return repo.findByEmail(email);
     }
 
