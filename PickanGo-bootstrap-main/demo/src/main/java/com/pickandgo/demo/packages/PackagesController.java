@@ -1,37 +1,60 @@
 package com.pickandgo.demo.packages;
 
+<<<<<<< HEAD
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+=======
+import com.pickandgo.demo.user.User;
+import com.pickandgo.demo.user.UserService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+>>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
 
+<<<<<<< HEAD
 import com.pickandgo.demo.user.User;
 import com.pickandgo.demo.user.UserService;
 
 import java.util.List;
 import java.util.Optional;
+=======
+import java.util.Optional;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+>>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
 
 @Controller
 public class PackagesController {
     
     @Autowired
+<<<<<<< HEAD
 
     private PackagesService packageService;
+=======
+    private PackagesService packageService;
+    
+>>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
     @Autowired
     private UserService userService;
  
 
         @GetMapping("/user/library-user")
         public String getAllPackages(Model model) {
-        model.addAttribute("packageList",
-                packageService.getAllPackages());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        Optional<User> user = userService.findByEmail(currentUserName);
+        model.addAttribute("packageList", packageService.getUserPackages(null, user.get()));
         return "user/library-user";
     }
     
@@ -55,13 +78,39 @@ public class PackagesController {
         return "user/create-user";
     }
     
+    
     @PostMapping("/package/create")
-    public String createUserPackage(Packages packages) {
-    // Save the package
-    packageService.savePackage(packages);
+    public String createPackage(@RequestParam String name,
+                                @RequestParam String city,
+                                 @RequestParam(required = false) Integer capacity,
+                                @RequestParam(required = false) String contact,
+                                @RequestParam String description,
+                                @RequestParam(required = false) String service,
+                                RedirectAttributes redirectAttributes) {
+    
+            Packages newPackage = new Packages();
+            newPackage.setName(name);
+            newPackage.setCity(city);
+            if (capacity != null) {
+            newPackage.setCapacity(capacity.intValue());
+                }
+            newPackage.setContact(contact);
+            newPackage.setDescription(description);
+            newPackage.setService(service);
 
-    return "redirect:/user/library-user";
-   }
+            // Set the user who creates the package
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = authentication.getName();
+            Optional<User> user = userService.findByEmail(currentUserName);
+            user.ifPresent(newPackage::setUser);
+
+            packageService.savePackage(newPackage);
+
+
+            // Redirect to the library page
+            return "redirect:/user/library-user";
+        }
+ 
 
     @GetMapping("/user/update/id={packageId}")
     public String updatePackageForm(@PathVariable long packageId, Model model) {
@@ -71,6 +120,34 @@ public class PackagesController {
 
     }
 
+<<<<<<< HEAD
+=======
+    // Method to handle the creation of a new package
+    @PostMapping("/api/packages/create")
+    public String createPackage(Packages packages) {
+
+        // Save the package
+         packageService.savePackage(packages);
+
+            // Redirect to the library page
+            return "redirect:/library";
+     
+    }
+
+    // Method to retrieve all packages
+    @GetMapping("/api/packages")
+    public ResponseEntity<List<Packages>> getAllPackages() {
+        try {
+            List<Packages> packages = packageService.getAllPackages();
+            if (packages.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(packages, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+>>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
     
     @PostMapping("/update/id={packageId}")
     public String upatePackage(@PathVariable long packageId, @ModelAttribute Packages packages) {
@@ -104,13 +181,31 @@ public class PackagesController {
         return "user/sign-user";
     }
 
+<<<<<<< HEAD
 
     
+=======
+    // Method to delete a package by ID
+    @DeleteMapping("/api/packages/{id}")
+    public ResponseEntity<HttpStatus> deletePackage(@PathVariable Long id) {
+        try {
+            packageService.deletePackage(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+     
+>>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
     @GetMapping("/user/views-user")
     public String showEditForm(){
         return "user/views-user";
     }
+
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6

@@ -1,11 +1,16 @@
 package com.pickandgo.demo.packages;
 
+<<<<<<< HEAD
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pickandgo.demo.user.User; 
+=======
+import com.pickandgo.demo.user.User;
+>>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,6 +34,13 @@ public class Packages {
     @Column(name = "package_id")
     private long packageId;
     
+<<<<<<< HEAD
+=======
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
+    
+>>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
     @Column(name = "name")
     private String name;
 

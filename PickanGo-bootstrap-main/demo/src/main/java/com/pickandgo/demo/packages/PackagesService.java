@@ -1,5 +1,6 @@
 package com.pickandgo.demo.packages;
 
+import com.pickandgo.demo.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ public class PackagesService {
 
     @Autowired
     private PackagesRepository repo;
+    
 
 
 //     /**
@@ -94,6 +96,15 @@ public class PackagesService {
         }
         return repo.findAll();
     }
+   
+   public List<Packages> getUserPackages(String keyword, User user) {
+    if (keyword != null) {
+        return repo.search(keyword);
+    }
+
+    // Modify this line to filter packages by user ID
+    return repo.findByUser_UserId(user.getUserId());
+}
 
     /**
      * Get a single package by ID
@@ -112,6 +123,10 @@ public class PackagesService {
      */
     public void deletePackage(long packageId) {
         repo.deleteById(packageId);
+    }
+    
+    public List<Packages> getPackagesForUser(Long userId) {
+        return repo.findByUser_UserId(userId);
     }
 }
 
