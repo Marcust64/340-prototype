@@ -9,15 +9,15 @@
     <!-- ** CSS Plugins Needed for the Project ** -->
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
     <!-- themefy-icon -->
-    <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
     <!--Favicon-->
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <!-- Main Stylesheet -->
-    <link href="assets/style.css" rel="stylesheet" media="screen" />
+    <link href="/assets/style.css" rel="stylesheet" media="screen" />
 
     <!--TESTING-->
     <link
@@ -41,7 +41,7 @@
     <header class="shadow-bottom sticky-top bg-white">
         <nav class="navbar navbar-expand-md navbar-light">
             <div class="container">
-                <a class="navbar-brand px-2" href="index.html">Pick and Go</a>
+                <a class="navbar-brand px-2" href="/index">Pick and Go</a>
                 <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
                     aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -50,24 +50,24 @@
                 <div class="collapse navbar-collapse text-center" id="navigation">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="index.html">Home</a>
+                            <a class="nav-link text-dark" href="/index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="library.html">My Library</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="faq.html">How it works</a>
+                            <a class="nav-link text-dark" href="/faq">How it works</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="contact.html">Contact</a>
+                            <a class="nav-link text-dark" href="/contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="sign.html">Sign in</a>
+                            <a class="nav-link text-dark" href="/sign">Sign in</a>
                         </li>
 
                         <div class="dropdown">
                             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
-                              <img src="images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+                              <img src="/images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
                               <strong class="text-dark">All</strong>
                             </a>
                             <ul class="dropdown-menu text-small shadow" aria-labelledby="usr3">
@@ -113,94 +113,56 @@
   <!-- Boxes -->
 
   <section class="p-5">
-    <div class="container" style="max-width: 100%; max-height: 100%;">
-      <div class="card bg-light text-light mb-3">
-        <div class="card-body text-center">
-          <img src="images/newyork.jpg" alt="New York City Image">
-          <h3 class="card-title mb-3">New York City, New York</h3>
-          <p class="card-text">
-            Example Name: Tour of New York City
-          </p>
-          <a href="views-user.html" class="btn btn-primary">View</a>
-        </div>
-      </div>
-  
-      <div class="card bg-light text-light mb-3">
-        <div class="card-body text-center">
-          <img src="images/newyork.jpg" alt="New York City Image">
-          <h3 class="card-title mb-3">New York City, New York</h3>
-          <p class="card-text">
-            Example Name: Tour of New York City
-          </p>
-          <a href="views-user.html" class="btn btn-primary">View</a>
-        </div>
-      </div>
-  
-      <div class="card bg-light text-light mb-3">
-        <div class="card-body text-center">
-          <img src="images/newyork.jpg" alt="New York City Image">
-          <h3 class="card-title mb-3">New York City, New York</h3>
-          <p class="card-text">
-            Example Name: Tour of New York City
-          </p>
-          <a href="views-user.html" class="btn btn-primary">View</a>
-        </div>
-      </div>
+    <div class="container" id="packagesContainer">
+      <!-- Dynamic package cards will be added here -->
     </div>
   </section>
   
+
+
+  <script>
+    function loadPackages() {
+      fetch('/api/packages')
+        .then(response => response.json())
+        .then(packages => {
+          displayPackages(packages);
+        })
+        .catch(error => console.error('Error fetching packages:', error));
+    }
   
-
-    <div
-      class="modal fade"
-      id="create"
-      tabindex="-1"
-      aria-labelledby="createLabel"
-      aria-hidden="true"
-    > 
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="createLabel">New Package</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <p class="lead">Fill All Fields</p>
-              <form>
-                <div class="mb-3">
-                  <label for="pkgname" class="col-form-label">
-                    Package Name:
-                  </label>
-                  <input type="text" class="form-control" id="pkgname" />
-                </div>
-                
-                <div class="mb-3">
-                    <label for="pkgname" class="col-form-label">
-                      Include your services:
-                    </label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                  </div>
-
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">Submit</button>
+    function displayPackages(packages) {
+      const container = document.getElementById('packagesContainer');
+      container.innerHTML = ''; // Clear existing content
+  
+      packages.forEach(pkg => {
+        const cardHtml = `
+          <div class="card bg-light text-light mb-3">
+            <div class="card-body text-center">
+              <img src="images/newyork.jpg" alt="Package Image">
+              <h3 class="card-title mb-3">${pkg.name}</h3>
+              <p class="card-text">Contact: ${pkg.contact}</p>
+              <p class="card-text">Location: ${pkg.city}</p>
+              <p class="card-text">Capacity: ${pkg.capacity}</p>
+              <p class="card-text">${pkg.description}</p>
+              <a href="/views/${pkg.packageId}" class="btn btn-primary">View</a>
+              <button onclick="addToLibrary(${pkg.packageId})" class="btn btn-secondary">Add to Library</button>
             </div>
           </div>
-      </div>
-</div>
+        `;
+        container.innerHTML += cardHtml;
+      });
+    }
+  
+    function addToLibrary(packageId) {
+      // Implement the logic to add package to library
+      console.log("Add to Library:", packageId);
+    }
+  
+    // Call loadPackages when the page loads
+    document.addEventListener('DOMContentLoaded', loadPackages);
+  </script>
+  
+  
 
 
   <script

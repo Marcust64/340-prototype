@@ -1,14 +1,15 @@
 package com.pickandgo.demo.user;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pickandgo.demo.packages.Packages; // Import your Packages entity
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -23,9 +24,11 @@ public class User {
     @Column(name = "user_id")
     private long userId;
 
-    
     @Column(name = "email")
     private String email;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "tag")
     private String tag;
@@ -33,12 +36,22 @@ public class User {
     @Column(name = "password")
     private String password;
 
+
+
+
+    // One-to-many relationship with Packages
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Packages> packages = new HashSet<>();
+
+
     @Override
     public String toString() {
         return "User{" +
            "userId=" + userId +
            ", email='" + email + '\'' +
+           ", username='" + username + '\'' +
            ", tag='" + tag + '\'' +
+           // Avoid including 'packages' in toString to prevent potential performance issues with lazy loading
            '}';
     }
 }

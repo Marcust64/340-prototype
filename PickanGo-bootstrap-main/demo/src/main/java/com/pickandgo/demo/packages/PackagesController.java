@@ -1,25 +1,31 @@
 package com.pickandgo.demo.packages;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
 
+import com.pickandgo.demo.user.User;
+import com.pickandgo.demo.user.UserService;
+
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PackagesController {
     
     @Autowired
-//<<<<<<< HEAD
+
     private PackagesService packageService;
-//=======
-   // PackagesService packageService;
+    @Autowired
+    private UserService userService;
  
 
         @GetMapping("/user/library-user")
@@ -64,52 +70,7 @@ public class PackagesController {
         return "user/views-user";
 
     }
-//>>>>>>> 9a4ba679386cb4af772dc7f91700aca37c250e63
 
-    // Method to handle the creation of a new package
-    @PostMapping("/api/packages/create")
-    public String createPackage(@RequestParam String name, 
-                                @RequestParam String city,
-                                @RequestParam int capacity,
-                                @RequestParam String contact,
-                                @RequestParam String description,
-                                @RequestParam String service,
-                                RedirectAttributes redirectAttributes) {
-        try {
-            Packages newPackage = new Packages();
-            newPackage.setName(name);
-            newPackage.setCity(city);
-            newPackage.setCapacity(capacity);
-            newPackage.setContact(contact);
-            newPackage.setDescription(description);
-            newPackage.setService(service);
-
-            Packages savedPackage = packageService.savePackage(newPackage);
-            
-            
-            redirectAttributes.addFlashAttribute("message", "Package created successfully!");
-
-            // Redirect to the library page
-            return "redirect:/library";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Error creating package");
-            return "redirect:/library"; // or wherever you want to redirect in case of error
-        }
-    }
-
-    // Method to retrieve all packages
-    @GetMapping("/api/packages")
-    public ResponseEntity<List<Packages>> getAllPackages() {
-        try {
-            List<Packages> packages = packageService.getAllPackages();
-            if (packages.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(packages, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     
     @PostMapping("/update/id={packageId}")
     public String upatePackage(@PathVariable long packageId, @ModelAttribute Packages packages) {
@@ -142,23 +103,14 @@ public class PackagesController {
     public String showSignInForm(){
         return "user/sign-user";
     }
-//<<<<<<< HEAD
 
-    // Method to delete a package by ID
-    @DeleteMapping("/api/packages/{id}")
-    public ResponseEntity<HttpStatus> deletePackage(@PathVariable Long id) {
-        try {
-            packageService.deletePackage(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-//=======
-     
+
+    
     @GetMapping("/user/views-user")
     public String showEditForm(){
         return "user/views-user";
-//>>>>>>> 9a4ba679386cb4af772dc7f91700aca37c250e63
     }
 }
+
+
+
