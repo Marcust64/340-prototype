@@ -125,11 +125,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-<<<<<<< HEAD
-                .requestMatchers("/", "/sign", "/index", "/api/packages", "/searchresults", "/signup", "/user/index-user", "/plugins/**", "/assets/**", "/images/**", "/403").permitAll()
-=======
                 .requestMatchers("/", "/sign", "/index", "/signup", "/user/index-user", "/plugins/**", "/assets/**", "/images/**", "/403").permitAll()
->>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
                 .requestMatchers("/user/**").hasAuthority("USER")
                 .requestMatchers("/TourGuide/**").hasAuthority("TOURGUIDE")
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")

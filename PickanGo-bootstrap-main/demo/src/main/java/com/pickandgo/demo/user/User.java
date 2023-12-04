@@ -1,25 +1,8 @@
 package com.pickandgo.demo.user;
-<<<<<<< HEAD
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.pickandgo.demo.packages.Packages; // Import your Packages entity
+
+import com.pickandgo.demo.packages.Packages; 
 import jakarta.persistence.*;
-=======
-import com.pickandgo.demo.packages.Packages;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
->>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,7 +36,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-<<<<<<< HEAD
 
 
 
@@ -63,12 +45,6 @@ public class User {
 
 
     @Override
-=======
-    // One-to-many relationship with Packages
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<Packages> packages = new HashSet<>();
-    
->>>>>>> b07a571e2591c7a134b5d70a3f22ca35efd077c6
     public String toString() {
         return "User{" +
            "userId=" + userId +

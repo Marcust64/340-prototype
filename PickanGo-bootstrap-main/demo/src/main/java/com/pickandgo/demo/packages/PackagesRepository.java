@@ -13,7 +13,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PackagesRepository extends JpaRepository<Packages, Long> {
     
-  List<Packages> findByUser_UserId(Long userId);
 
      public List<Packages> findByName(String name);
      
