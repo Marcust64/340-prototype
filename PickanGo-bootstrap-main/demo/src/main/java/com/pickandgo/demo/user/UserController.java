@@ -57,6 +57,12 @@ public class UserController {
 
        return "redirect:/sign";
      }
+     
+     @GetMapping("/403")
+    public String show403Form(Model model) {        
+        return "403";
+    }
+
     /*
     // Method to handle the creation of a new package
     @PostMapping("/signup")

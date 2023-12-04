@@ -31,37 +31,41 @@ public class SecurityConfig {
         HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
         requestCache.setMatchingRequestParameterName(null);
         http
-               
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-				.requestMatchers("/", "/sign", "/index","/signup", "/user/index-user", "/plugins/**", "/assets/**", "/images/**").permitAll()
-                                .requestMatchers("/user/**").hasAuthority("USER")
-                                .requestMatchers("/TourGuide/**").hasAuthority("TOURGUIDE")
-                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-				.anyRequest().authenticated()
-			)
-                        .formLogin()
-			.loginPage("/sign")
-                        .loginProcessingUrl("/sign")
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .successHandler((request, response, authentication) -> {
+                .requestMatchers("/", "/sign", "/index", "/signup", "/user/index-user", "/plugins/**", "/assets/**", "/images/**", "/403").permitAll()
+                .requestMatchers("/user/**").hasAuthority("USER")
+                .requestMatchers("/TourGuide/**").hasAuthority("TOURGUIDE")
+                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                .anyRequest().authenticated()
+                )
+                .formLogin((form) -> form
+                .loginPage("/sign")
+                .loginProcessingUrl("/sign")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .failureUrl("/403")
+                .successHandler((request, response, authentication) -> {
                         handleSuccessRedirect(request, response, authentication);
                         })
-                        .and()
-                        .logout()
-                        .permitAll();
+                )
+                .logout()
+                .logoutUrl("/logout")  
+                .logoutSuccessUrl("/sign")
+                 .and()
+                .exceptionHandling()
+                .accessDeniedPage("/403");
+        
+                return http.build();
 
-                        return http.build();
-                
-    }  
-    
+    }
+
     private void handleSuccessRedirect(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         String defaultSuccessUrl = determineDefaultSuccessUrl(authorities);
         response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + defaultSuccessUrl));
     }
-    
+
     private String determineDefaultSuccessUrl(Collection<? extends GrantedAuthority> authorities) {
         if (authorities.stream().anyMatch(auth -> auth.getAuthority().equals("USER"))) {
             return "/user/index-user";
@@ -73,8 +77,6 @@ public class SecurityConfig {
             return "/";
         }
     }
-                
-    
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(service).passwordEncoder(
@@ -85,6 +87,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
 
 }

@@ -8,15 +8,15 @@
                 <!-- ** CSS Plugins Needed for the Project ** -->
 
                 <!-- Bootstrap -->
-                <link rel="stylesheet" href="../plugins/bootstrap/bootstrap.min.css">
+                <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
                     <!-- themefy-icon -->
-                    <link rel="stylesheet" href="../plugins/themify-icons/themify-icons.css">
+                    <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
                         <!--Favicon-->
-                        <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+                        <link rel="icon" href="images/favicon.png" type="image/x-icon">
                             <!-- fonts -->
                             <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
                                 <!-- Main Stylesheet -->
-                                <link href="../assets/style.css" rel="stylesheet" media="screen" />
+                                <link href="assets/style.css" rel="stylesheet" media="screen" />
                                 </head>
 
                                 <body>
@@ -32,28 +32,33 @@
 
                                                 <div class="collapse navbar-collapse text-center" id="navigation">
                                                     <ul class="navbar-nav ml-auto">
-                                                           <li class="nav-item">
-															<a class="nav-link text-dark" href="/user/index-user">Home</a>
-															</li>
-															<li class="nav-item">
-															<a class="nav-link text-dark" href="/user/library-user">My Library</a>
-															</li>
-															<li class="nav-item">
-															<a class="nav-link text-dark" href="/user/faq-user">How it works</a>
-															</li>
-															<li class="nav-item">
-															<a class="nav-link text-dark" href="/user/contact-user">Contact</a>
-															</li>
-															<li class="nav-item">
-															<a class="nav-link text-dark" href="/user/sign-user">Sign in</a>
-															</li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-dark" href="index.html">Home</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-dark" href="library.html">My Library</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-dark" href="faq.html">How it works</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-dark" href="contact.html">Contact</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-dark" href="sign.html">Sign in</a>
+                                                        </li>
 
                                                         <div class="dropdown">
                                                             <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <img src="../images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
-                                                                    <strong class="text-dark">User</strong>
+                                                                <img src="images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+                                                                    <strong class="text-dark">All</strong>
                                                             </a>
-                                                           
+                                                            <ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
+                                                                <li><a class="dropdown-item" href="#">Tour Guide</a></li>
+                                                                <li><a class="dropdown-item" href="#">User</a></li>
+                                                                <li><a class="dropdown-item" href="#">Admin</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                            </ul>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -66,8 +71,8 @@
                                             <div class="container">
                                                 <div class="row justify-content-center">
                                                     <div class="col-xl-5 col-md-8">
-                                                       
-                                                            <form form th:action="@{/sign}" method="post">
+														<label style="color: red;"><b>Invalid Email or Password</b></label>
+                                                            <form action="/sign" method="post">
                                                                 <!-- Email input -->
                                                                 <div class="form-group">
                                                                     <label for="username"><b>Email Address</b></label>
@@ -77,19 +82,12 @@
                                                                         <input type="password" placeholder="Enter Password" name="password" required>
                                                                             <!-- 2 column grid layout for inline styling -->
                                                                             <div class="row mb-4">
-                                                                                <div class="col d-flex justify-content-center">
-                                                                                    <!-- Checkbox -->
-                                                                                    <div class="form-check">
-                                                                                        <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-                                                                                        <label class="form-check-label" for="form1Example3">
-                                                                                            Remember me
-                                                                                        </label>
-                                                                                    </div>
+                                                                    
                                                                                 </div>
 
                                                                                 <div class="col text-center">
                                                                                     <!-- Simple link -->
-                                                                                    <a href="/user/signup-user">New User?</a>
+                                                                                    <a href="/signup">New User?</a>
                                                                                 </div>
                                                                             </div>
                                                                             <!-- Submit button -->

@@ -15,7 +15,7 @@
   <!-- fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
   <!-- Main Stylesheet -->
-  <link href="/assets/style.css" rel="stylesheet" media="screen" />
+  <link href="../assets/style.css" rel="stylesheet" media="screen" />
   <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 </head>
@@ -42,15 +42,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/user/contact-user">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/user/sign-user">Sign in</a>
-                        </li>
                       <div class="dropdown">
                         <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
                           <img src="/images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
                           <strong class="text-dark">User</strong>
                         </a>
-                       
+							<ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
+							 <li><a class="dropdown-item" href="/logout">Logout</a></li>
+							</ul>
                       </div>
                   </ul>
               </div>
