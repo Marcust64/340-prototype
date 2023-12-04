@@ -293,7 +293,7 @@
   // }
 
   function loadPackages() {
-    fetch('/api/packages')
+    fetch('/api/my-packages')
     .then(response => response.json())
     .then(packages => {
         allPackages = packages;
