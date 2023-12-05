@@ -15,57 +15,6 @@ public class PackagesService {
     
 
 
-//     /**
-//      * Get all packages.
-//      *
-//      * @return the list of products.
-//      */
-
-//     // Save a new package
-//     public Packages savePackage(Packages packages) {
-//         return repo.save(packages);
-//     }
-
-//     // Get all packages
-
-//     public List<Packages> getAllPackages() {
-//         return repo.findAll();
-//     }
-
-
-//     /**
-//      * Get all packages that match the keyword.
-//      *
-//      * @param keyword the search term.
-//      * @return the list of products.
-//      */
-//    public List<Packages> getAllPackages(String keyword) {
-//         if (keyword != null) {
-//             return repo.search(keyword);
-//         }
-//         return repo.findAll();
-//     }
-
-//     /**
-//      * Get a single package by ID
-//      *
-//      * @param packageId
-//      * @return the product
-//      */
-//     public Packages getPackage(long packageId) {
-//         return repo.getReferenceById(packageId);
-//     }
-
-//     /**
-//      * Delete a single package by ID
-//      *
-//      * @param packageId
-//      */
-//     public void deletePackage(long packageId) {
-//         repo.deleteById(packageId);
-//     }
-
-
     /**
      * Get all packages.
      *
@@ -102,7 +51,6 @@ public class PackagesService {
         return repo.search(keyword);
     }
 
-    // Modify this line to filter packages by user ID
     return repo.findByUser_UserId(user.getUserId());
 }
 

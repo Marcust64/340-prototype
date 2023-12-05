@@ -51,7 +51,6 @@ public class UserController {
          
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-       // user.setTag("USER");
         
         service.saveUser(user);
 

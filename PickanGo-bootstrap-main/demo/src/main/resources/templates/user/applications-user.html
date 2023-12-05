@@ -57,7 +57,7 @@
                         </li>
 						<li class="nav-item">
                             <a class="nav-link text-dark" href="/application/display">Applications</a>
-                        </li>
+                        </li>						
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/user/faq-user">How it works</a>
                         </li>
@@ -85,7 +85,7 @@
     <div class="container" id="toptitle">
       <div class="d-sm-flex align-items-center justify-content-between">
         <div>
-          <h1><span class="text-light"> My Library </span></h1>
+          <h1><span class="text-light"> My Applications </span></h1>
           
           
         </div>
@@ -100,17 +100,10 @@
         
 		<form th:action="@{/search}">
         <div class="input-group news-input">
-          <input type="text" class="form-control" name="keyword" id="keyword"  th:value="${keyword}" size="120" placeholder="Enter Package Name"/>
+          <input type="text" class="form-control" name="keyword" id="keyword"  th:value="${keyword}" size="120" placeholder="Enter Application Name"/>
           <a class="btn btn-dark btn-lg" type="button">Submit</a>
         </div>
 		</form>
-		<a
-			href="/user/create-user"
-            class="btn btn-primary btn-lg"
-            style="background-color: #05DCFA; margin-left: 10px;"
-          >
-            Create A New Package
-          </a>
         
       </div>
     </div>
@@ -120,12 +113,12 @@
                 <div class="col-md-4 mb-4 mt-5 ml-5">
                    <div th:each="package : ${packageList}" class="col-md-14 mb-4">
                     <div class="card">
-                        <img src="../images/City1.jpg" class="card-img-top" alt="Package Image">
+                        <img src="../images/City2.jpg" class="card-img-top" alt="Package Image">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${package.name}"></h5>
                             <p class="card-text" th:text="${package.city}"></p>
-                            <a th:href="@{'/user/update/id=' + ${package.packageId}}" class="btn btn-primary">View/Edit</a>
-							<a th:href="@{'/user/delete/id=' + ${package.packageId}}" class="btn btn-danger">Delete</a>
+                            <a th:href="@{'/application/id=' + ${package.packageId}}" class="btn btn-primary">View</a>
+							<a th:href="@{'/application/delete/id=' + ${package.packageId}}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                     </div>

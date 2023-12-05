@@ -14,6 +14,9 @@ public interface TourPackagesRepository extends JpaRepository<TourPackages, Long
   List<TourPackages> findByUser_UserId(Long userId);
 
      public List<TourPackages> findByName(String name);
+     
+     //Marcus add
+     TourPackages findByPackageId(Long packageId);
 
    @Query("SELECT p FROM Packages p WHERE CONCAT(p.name, p.city) LIKE %?1%")
     public List<TourPackages> search(String keyword);

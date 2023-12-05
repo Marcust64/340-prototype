@@ -12,6 +12,7 @@ public class TourPackagesService {
 
     @Autowired
     private TourPackagesRepository repo;
+    
 
     // Convert a Packages entity to a PackagesDTO
     public TourPackagesDTO convertToDTO(TourPackages packages) {
@@ -66,6 +67,12 @@ public class TourPackagesService {
         return repo.findById(packageId)
                    .map(this::convertToDTO);
     }
+    
+    //Marcus add
+     public TourPackages findByPackageId(long packagesId) {
+        return repo.findByPackageId(packagesId);
+     }
+    
 
     // Delete a single package by ID
     public void deletePackage(long packageId) {
@@ -98,4 +105,6 @@ public TourPackages updatePackage(TourPackagesDTO updatedPackageDTO) {
         throw new RuntimeException("Package not found with id: " + updatedPackageDTO.getPackageId());
     }
 }
+
+
 }
