@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 import com.pickandgo.demo.user.User;
 import com.pickandgo.demo.user.UserService;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -37,7 +38,10 @@ public class PackagesController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
         Optional<User> user = userService.findByEmail(currentUserName);
-        model.addAttribute("packageList", packageService.getUserPackages(null, user.get()));
+        
+         List<Packages> searchResults = packageService.search(keyword);
+         
+         model.addAttribute("packageList", searchResults);
         model.addAttribute("keyword", keyword);
         return "user/library-user";
     }
