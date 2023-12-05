@@ -55,19 +55,13 @@
       </nav>
   </header>
 
-    <!-- Inline JavaScript for Thymeleaf integration -->
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var packageId = [[${package.packageId}]]; // Thymeleaf injects packageId here
-        /*]]>*/
-    </script>
+
 
     <!-- Package Details Section -->
     <section class="home py-5" id="home" th:if="${package != null}">
         <div class="container-lg">
             <div class="row min-vh-100 align-items-center align-content-center">
                 <div class="col-md-6 mt-5 mt-md-0">
-                    <!-- Image or other content -->
                 </div>
                 <div class="col-md-6 mt-5 mt-md-0 order-md-first">
                     <div class="home-text">
@@ -86,54 +80,12 @@
                         <label for="pkgService" class="col-form-label">Services:</label>
                         <textarea class="form-control" id="pkgService" name="service" rows="5" th:text="${package.service}"></textarea>
                         
-                        <button type="button" class="btn btn-success px-3 mt-3" onclick="savePackage()">Save</button>
+						<a href="/TourGuide/searchresults" class="btn btn-secondary">Close</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Package Not Found Message -->
-    <div th:if="${package == null}">
-        <p class="text-center">Package not found.</p>
-    </div>
-
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function savePackage() {
-            var packageName = document.getElementById('packageName').value;
-            var packageContact = document.getElementById('packageContact').value;
-            var packageLocation = document.getElementById('packageLocation').value;
-            var packageDescription = document.getElementById('packageDescription').value;
-            var packageServices = document.getElementById('pkgService').value;
-
-            var data = {
-                packageId: packageId, 
-                name: packageName,
-                contact: packageContact,
-                city: packageLocation,
-                description: packageDescription,
-                service: packageServices
-            };
-
-            fetch('/api/packages/update', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = '/TourGuide/library';
-                } else {
-                    alert('Failed to save package. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            });
-        }
-    </script>
+    
 </body>
 </html>

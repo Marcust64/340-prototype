@@ -50,33 +50,27 @@
                 <div class="collapse navbar-collapse text-center" id="navigation">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/index">Home</a>
+                            <a class="nav-link text-dark" href="/TourGuide/index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="library.html">My Library</a>
+                            <a class="nav-link text-dark" href="/TourGuide/library">My Library</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/faq">How it works</a>
+                            <a class="nav-link text-dark" href="/TourGuide/faq">How it works</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/contact">Contact</a>
+                            <a class="nav-link text-dark" href="/TourGuide/contact">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/sign">Sign in</a>
-                        </li>
+                        
 
                         <div class="dropdown">
-                            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
-                              <img src="/images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
-                              <strong class="text-dark">All</strong>
-                            </a>
-                            <ul class="dropdown-menu text-small shadow" aria-labelledby="usr3">
-                              <li><a class="dropdown-item" href="#">Tour Guide</a></li>
-                              <li><a class="dropdown-item" href="#">User</a></li>
-                              <li><a class="dropdown-item" href="#">Admin</a></li>
-                              <li><hr class="dropdown-divider"></li>
-                            </ul>
-                          </div>
+                          <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+                            <strong class="text-dark">Tour</strong>
+                          </a>
+                          <ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
+                           <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                          </ul>
                     </ul>
                 </div>
             </div>
@@ -137,14 +131,13 @@
         const cardHtml = `
           <div class="card bg-light text-light mb-3">
             <div class="card-body text-center">
-              <img src="images/newyork.jpg" alt="Package Image">
+              <img src="/images/newyork.jpg" alt="Package Image">
               <h3 class="card-title mb-3">${pkg.name}</h3>
               <p class="card-text">Contact: ${pkg.contact}</p>
               <p class="card-text">Location: ${pkg.city}</p>
               <p class="card-text">Capacity: ${pkg.capacity}</p>
               <p class="card-text">${pkg.description}</p>
-              <a href="/views/${pkg.packageId}" class="btn btn-primary">View</a>
-              <button onclick="addToLibrary(${pkg.packageId})" class="btn btn-secondary">Add to Library</button>
+              <a href="/TourGuide/pkgview/${pkg.packageId}" class="btn btn-primary">View</a>
             </div>
           </div>
         `;
@@ -221,13 +214,13 @@
           const cardHtml = `
               <div class="card bg-light text-light mb-3">
                   <div class="card-body text-center">
-                      <img src="images/newyork.jpg" alt="Package Image">
+                      <img src="/images/newyork.jpg" alt="Package Image">
                       <h3 class="card-title mb-3">${pkg.name}</h3>
                       <p class="card-text">Contact: ${pkg.contact}</p>
                       <p class="card-text">Location: ${pkg.city}</p>
                       <p class="card-text">Capacity: ${pkg.capacity}</p>
                       <p class="card-text">${pkg.description}</p>
-                      <a href="/views/${pkg.packageId}" class="btn btn-primary">View</a>
+                      <a href="/TourGuide/pkgview/${pkg.packageId}" class="btn btn-primary">View</a>
                       <button onclick="addToLibrary(${pkg.packageId})" class="btn btn-secondary">Add to Library</button>
                   </div>
               </div>

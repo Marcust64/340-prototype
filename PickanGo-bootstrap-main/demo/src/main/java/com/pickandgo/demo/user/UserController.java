@@ -46,6 +46,23 @@ public class UserController {
         return "index";
     }
 
+    @GetMapping("/searchresults")
+    public String showResults(){
+        return "searchresults";
+    }
+
+    @GetMapping("/faq")
+    public String showFaq(){
+
+        return "faq";
+    }
+
+   @GetMapping("/views")
+    public String showView(){
+
+        return "views";
+    }
+
      @PostMapping("/signup")
      public String signUp(User user) {
          
@@ -63,31 +80,6 @@ public class UserController {
         return "403";
     }
 
-    /*
-    // Method to handle the creation of a new package
-    @PostMapping("/signup")
-    public String createUser(@RequestParam String email, 
-                                @RequestParam String password,
-                                @RequestParam String tag,
-                                RedirectAttributes redirectAttributes) {
-        try {
-            User newUser = new User();
-            newUser.setEmail(email);
-            newUser.setPassword(password);
-            newUser.setTag(tag);
-            
 
-            User savedUser = service.saveUser(newUser);
-            
-            
-            redirectAttributes.addFlashAttribute("message", "User created successfully!");
-
-            // Redirect to the home page
-            return "redirect:/index";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Error creating user");
-            return "redirect:/index"; // or wherever you want to redirect in case of error
-        }
-        */ 
 
 }
