@@ -76,6 +76,10 @@ public class PackagesService {
     public List<Packages> getPackagesForUser(Long userId) {
         return repo.findByUser_UserId(userId);
     }
+    
+    public List<Packages> search(String keyword) {
+        return repo.search(keyword);
+    }
 }
 
 

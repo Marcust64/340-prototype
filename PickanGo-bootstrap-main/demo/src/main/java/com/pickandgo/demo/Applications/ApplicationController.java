@@ -5,20 +5,16 @@ import com.pickandgo.demo.PackagesTour.TourPackagesService;
 import com.pickandgo.demo.user.User;
 import com.pickandgo.demo.user.UserService;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -46,7 +42,7 @@ public class ApplicationController {
                 service.copyTourPackageToApplication(tourPackage);
 
                
-                 return "user/searchresults";
+                 return "user/searchresults-user";
     }
     
     @GetMapping("/user/searchresults-user")
