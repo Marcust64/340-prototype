@@ -247,7 +247,7 @@
                 Close
               </button>
                   <!-- CSRF Token field -->
-                  <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                  <!-- <input type="hidden" name="_csrf" value="${_csrf.token}"/> -->
 
               <button type="submit" class="btn btn-primary" id="submitPackage">Submit</button>
             </div>
@@ -255,6 +255,8 @@
           </div>
       </div>
 </div>
+
+
 
 
   <script
@@ -265,17 +267,7 @@
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
 
-<!--  GoogleMapsAPI for auto complete
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7iHWNKRtHYhWXAciNjGRrroUyyE3N8Nk&libraries=places&callback=initAutocomplete" async defer></script>
--->
-<!--
-<script>
-  function initAutocomplete() {
-    var input = document.getElementById('inputCity');
-    new google.maps.places.Autocomplete(input);
-}
 
-</script> -->
 
 
 
@@ -373,6 +365,18 @@ function deletePackage(packageId) {
 </script>
 
 
+
+<!--  GoogleMapsAPI for auto complete -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7iHWNKRtHYhWXAciNjGRrroUyyE3N8Nk&libraries=places&callback=initAutocomplete" async defer></script>
+
+
+<script>
+  function initAutocomplete() {
+    var input = document.getElementById('inputCity');
+    new google.maps.places.Autocomplete(input);
+}
+</script>
+
 <style>
   .card-fixed {
       width: 24rem; /* Increased width */
@@ -386,6 +390,11 @@ function deletePackage(packageId) {
   }
   </style>
   
+  <style>
+        .pac-container {
+        z-index: 10000 !important;
+    }
+  </style>
   
 
         

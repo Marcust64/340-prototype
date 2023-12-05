@@ -103,8 +103,7 @@
         
 
         <div class="input-group news-input">
-          <input type="text" class="form-control" placeholder="New York City, New York" />
-          <button class="btn btn-dark btn-lg" type="button">Submit</button>
+          <input type="text" class="form-control" placeholder="Search Location" id="search"/>
         </div>
       </div>
     </div>
@@ -132,7 +131,7 @@
   
     function displayPackages(packages) {
       const container = document.getElementById('packagesContainer');
-      container.innerHTML = ''; // Clear existing content
+      container.innerHTML = ''; 
   
       packages.forEach(pkg => {
         const cardHtml = `
@@ -182,6 +181,18 @@
       zoom: 18,
     })
   </script>
+
+
+<!--  GoogleMapsAPI for auto complete -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7iHWNKRtHYhWXAciNjGRrroUyyE3N8Nk&libraries=places&callback=initAutocomplete" async defer></script>
+
+
+<script>
+  function initAutocomplete() {
+    var input = document.getElementById('search');
+    new google.maps.places.Autocomplete(input);
+}
+</script>
         
 </body>
 
