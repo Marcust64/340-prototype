@@ -63,6 +63,10 @@ public class ApplicationService {
         applicationRepository.deleteById(packageId);
     }
     
+    public List<Application> search(String keyword) {
+        return applicationRepository.search(keyword);
+    }
+    
     
     
     

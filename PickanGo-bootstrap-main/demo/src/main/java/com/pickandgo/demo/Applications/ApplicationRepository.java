@@ -14,6 +14,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Long>{
 
      public List<Application> findByName(String name);
 
-   @Query("SELECT p FROM Packages p WHERE CONCAT(p.name, p.city) LIKE %?1%")
+   @Query("SELECT a FROM Application a WHERE CONCAT(a.name, a.city) LIKE %?1%")
     public List<Application> search(String keyword);
+    
 }

@@ -49,6 +49,8 @@
 
                 <div class="collapse navbar-collapse text-center" id="navigation">
                     <ul class="navbar-nav ml-auto">
+                        <div class="collapse navbar-collapse text-center" id="navigation">
+                    <ul class="navbar-nav ml-auto">
                          <li class="nav-item">
                             <a class="nav-link text-dark" href="/user/library-user">My Library</a>
                         </li>
@@ -70,8 +72,7 @@
 							<ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
 							 <li><a class="dropdown-item" href="/logout">Logout</a></li>
 							</ul>
-                          </div>
-                    </ul>
+						</div>
                 </div>
             </div>
         </nav>
@@ -97,8 +98,7 @@
         
 
         <div class="input-group news-input">
-          <input type="text" class="form-control" placeholder="Enter City here..." />
-          <button class="btn btn-dark btn-lg" type="button">Submit</button>
+          <input type="text" class="form-control" placeholder="Search Location" id="search"/>
         </div>
       </div>
     </div>
@@ -132,13 +132,13 @@
         const cardHtml = `
           <div class="card bg-light text-light mb-3">
             <div class="card-body text-center">
-              <img src="/images/City2.jpg" alt="Package Image">
+              <img src="images/newyork.jpg" alt="Package Image">
               <h3 class="card-title mb-3">${pkg.name}</h3>
-              <p class="card-text">Contact: ${pkg.contact}</p>
+             <p class="card-text">Contact: ${pkg.contact}</p>
               <p class="card-text">Location: ${pkg.city}</p>
               <p class="card-text">Capacity: ${pkg.capacity}</p>
-              <p class="card-text">${pkg.description}</p>
-              <a href="/views/${pkg.packageId}" class="btn btn-primary">View</a>
+              <p class="card-text">Description: ${pkg.description}</p>
+			  <p class="card-text">Service: ${pkg.service}</p>
              <form action="/application" method="post">
 			<input type="hidden" name="packageId" value="${pkg.packageId}">
 			<button type="submit" class="btn btn-secondary">Apply Now</button>
@@ -150,7 +150,9 @@
       });
     }
   
+
   
+    // Call loadPackages when the page loads
     document.addEventListener('DOMContentLoaded', loadPackages);
   </script>
   
@@ -174,7 +176,71 @@
       zoom: 18,
     })
   </script>
-        
-</body>
 
+
+<!--  GoogleMapsAPI for auto complete -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7iHWNKRtHYhWXAciNjGRrroUyyE3N8Nk&libraries=places&callback=initAutocomplete" async defer></script>
+
+
+<script>
+  let allPackages = []; // Array to hold all packages
+
+  document.addEventListener('DOMContentLoaded', () => {
+      loadPackages();
+
+      document.getElementById('search').addEventListener('input', (event) => {
+          const searchTerm = event.target.value.toLowerCase();
+          filterPackages(searchTerm);
+      });
+  });
+
+  function loadPackages() {
+      fetch('/api/packages')
+          .then(response => response.json())
+          .then(packages => {
+              allPackages = packages;
+              displayPackages(packages);
+          })
+          .catch(error => console.error('Error fetching packages:', error));
+  }
+
+  function filterPackages(searchTerm) {
+      const filteredPackages = allPackages.filter(pkg => 
+          pkg.city.toLowerCase().includes(searchTerm)
+      );
+      displayPackages(filteredPackages);
+  }
+
+  function displayPackages(packages) {
+      const container = document.getElementById('packagesContainer');
+      container.innerHTML = '';
+
+      packages.forEach(pkg => {
+          const cardHtml = `
+              <div class="card bg-light text-light mb-3">
+                  <div class="card-body text-center">
+                      <img src="/images/City2.jpg" alt="Package Image">
+                      <h3 class="card-title mb-3">${pkg.name}</h3>
+                     <p class="card-text">Contact: ${pkg.contact}</p>
+				<p class="card-text">Location: ${pkg.city}</p>
+				<p class="card-text">Capacity: ${pkg.capacity}</p>
+				<p class="card-text">Description: ${pkg.description}</p>
+				<p class="card-text">Service: ${pkg.service}</p>
+				<form action="/application" method="post">
+				<input type="hidden" name="packageId" value="${pkg.packageId}">
+				<button type="submit" class="btn btn-secondary">Apply Now</button>
+				</form>
+                  </div>
+              </div>
+          `;
+          container.innerHTML += cardHtml;
+      });
+  }
+
+  function initAutocomplete() {
+      var input = document.getElementById('search');
+      new google.maps.places.Autocomplete(input);
+  }
+</script>
+</body>
 </html>

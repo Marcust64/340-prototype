@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.pickandgo.demo.Applications;
 
 import com.pickandgo.demo.PackagesTour.TourPackages;
 import com.pickandgo.demo.PackagesTour.TourPackagesService;
 import com.pickandgo.demo.user.User;
 import com.pickandgo.demo.user.UserService;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +46,7 @@ public class ApplicationController {
                 service.copyTourPackageToApplication(tourPackage);
 
                
-                 return "user/searchresults-user";
+                 return "user/searchresults";
     }
     
     @GetMapping("/user/searchresults-user")
@@ -86,14 +83,17 @@ public class ApplicationController {
     
     @GetMapping("application/search")
     public String getPackage(Model model, @Param("keyword") String keyword) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-        Optional<User> user = userService.findByEmail(currentUserName);
-        model.addAttribute("packageList", service.getUserPackages(null, user.get()));
-        model.addAttribute("keyword", keyword);
-        return "user/applications-user";
-    }
-    
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String currentUserName = authentication.getName();
+    Optional<User> user = userService.findByEmail(currentUserName);
+
+    // Call the search method with the provided keyword
+    List<Application> searchResults = service.search(keyword);
+
+    model.addAttribute("packageList", searchResults);
+    model.addAttribute("keyword", keyword);
+    return "user/applications-user";
+}
     
         
 }
