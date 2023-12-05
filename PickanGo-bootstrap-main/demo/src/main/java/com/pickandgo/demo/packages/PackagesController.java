@@ -34,8 +34,10 @@ public class PackagesController {
 
     @GetMapping("/search")
     public String getPackage(Model model, @Param("keyword") String keyword) {
-        model.addAttribute("packageList",
-                packageService.getAllPackages(keyword));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        Optional<User> user = userService.findByEmail(currentUserName);
+        model.addAttribute("packageList", packageService.getUserPackages(null, user.get()));
         model.addAttribute("keyword", keyword);
         return "user/library-user";
     }
@@ -55,21 +57,13 @@ public class PackagesController {
     @PostMapping("/package/create")
     public String createPackage(@RequestParam String name,
                                 @RequestParam String city,
-                                 @RequestParam(required = false) Integer capacity,
-                                @RequestParam(required = false) String contact,
                                 @RequestParam String description,
-                                @RequestParam(required = false) String service,
                                 RedirectAttributes redirectAttributes) {
     
             Packages newPackage = new Packages();
             newPackage.setName(name);
             newPackage.setCity(city);
-            if (capacity != null) {
-            newPackage.setCapacity(capacity.intValue());
-                }
-            newPackage.setContact(contact);
             newPackage.setDescription(description);
-            newPackage.setService(service);
 
             // Set the user who creates the package
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -87,22 +81,28 @@ public class PackagesController {
 
     @GetMapping("/user/update/id={packageId}")
     public String updatePackageForm(@PathVariable long packageId, Model model) {
-        model.addAttribute("package",
-                packageService.getPackage(packageId));
-        return "user/views-user";
-
+    Optional<Packages> packageOptional = packageService.getPackage(packageId);
+    model.addAttribute("package", packageOptional.orElse(null));
+    return "user/views-user";
     }
 
-    
     @PostMapping("/update/id={packageId}")
-    public String upatePackage(@PathVariable long packageId, @ModelAttribute Packages packages) {
-        packageService.savePackage(packages);
-        return "redirect:/user/library-user";
+    public String updatePackage(@PathVariable long packageId, @ModelAttribute Packages packages) {
+
+    Optional<Packages> packageOptional = packageService.getPackage(packageId);
+    packageOptional.ifPresent(existingPackage -> {
+    existingPackage.setName(packages.getName());
+    existingPackage.setCity(packages.getCity());
+    existingPackage.setDescription(packages.getDescription());
+    
+    packageService.savePackage(existingPackage);
+    });
+    return "redirect:/user/library-user";
     }
 
     
-     @GetMapping("/user/contact-user")
-    public String showCcontactForm(){
+    @GetMapping("/user/contact-user")
+    public String showContactForm(){
         return "user/contact-user";
     }
    
@@ -115,17 +115,6 @@ public class PackagesController {
     public String showHomePage(){
         return "user/index-user";
     }
-    
-     @GetMapping("/user/signup-user")
-    public String showSignUpForm(){
-        return "user/signup-user";
-    }
-    
-     @GetMapping("/user/sign-user")
-    public String showSignInForm(){
-        return "user/sign-user";
-    }
-
 
     @GetMapping("/user/views-user")
     public String showEditForm(){

@@ -1,12 +1,8 @@
-package com.pickandgo.demo.packages;
+package com.pickandgo.demo.Applications;
 
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.pickandgo.demo.user.User; 
+import com.pickandgo.demo.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,22 +14,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+/**
+ *
+ * @author Marcus Thompson
+ */
+
 @Entity
-@Table(name = "package")
+@Table(name = "applications")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Packages {
+public class Application {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "package_id")
     private long packageId;
-    
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User user;
     
     @Column(name = "name")
     private String name;
@@ -41,12 +39,19 @@ public class Packages {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "contact")
+    private String contact;
+
+    @Column(name = "capacity")
+    private int capacity;
+
     @Column(name = "description")
     private String description;
 
+    @Column(name = "service")
+    private String service;
 
-
-
-
- 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 }

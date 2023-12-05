@@ -66,7 +66,7 @@
   <div class="container" id="toptitle">
     <div class="d-sm-flex align-items-center justify-content-between">
       <div>
-        <h1><span class="text-light"> View </span></h1>
+        <h1><span class="text-light"> Application View </span></h1>
         
         
       </div>
@@ -86,21 +86,32 @@
             <div class="col-md-6 mt-5 mt-md-0 order-md-first">
                <div class="home-text">
                   <div class="container my-4">
-        <!-- Form for editing package information -->
-        <form th:action="@{'/update/id=' + ${package != null ? package.packageId : null}}" method="post">
-            <div class="mb-3">
-                <label for="packageName" class="form-label">Package Name:</label>
-                <input type="text" class="form-control" id="packageName" name="name" th:value="${package.name}" required>
-            </div>
-            <div class="mb-3">
-                <label for="city" class="form-label">City:</label>
-                <input type="text" class="form-control" id="city" name="city" th:value="${package.city}" required>
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Travel Information:</label>
-                <textarea class="form-control" id="description" name="description" rows="4" required th:text="${package.description}"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+        
+        <form th:action="@{'application/id=' + ${package != null ? package.packageId : null}}" method="get">
+            <label for="packageName" class="form-label">Application Name:</label>
+        <span th:text="${package.name}" class="form-control"></span>
+		</div>
+		<div class="mb-3">
+        <label for="city" class="form-label">City:</label>
+        <span th:text="${package.city}" class="form-control"></span>
+		</div>
+		<div class="mb-3">
+        <label for="description" class="form-label">Contact:</label>
+        <span th:text="${package.contact}" class="form-control"></span>
+		</div>
+		<div class="mb-3">
+        <label for="description" class="form-label">capacity:</label>
+        <span th:text="${package.capacity}" class="form-control"></span>
+		</div>
+		<div class="mb-3">
+        <label for="description" class="form-label">Travel Information:</label>
+        <span th:text="${package.description}" class="form-control"></span>
+		</div>
+		<div class="mb-3">
+        <label for="description" class="form-label">Service:</label>
+        <span th:text="${package.service}" class="form-control"></span>
+		</div>
+            <a th:href="@{/application/display}" class="btn btn-primary">Back</a>
         </form>
     </div>
 
