@@ -111,10 +111,68 @@
       <!-- Dynamic package cards will be added here -->
     </div>
   </section>
-  
 
 
   <script>
+    function loadPackages() {
+        fetch('/api/packages')
+            .then(response => response.json())
+            .then(packages => {
+                displayPackages(packages);
+            })
+            .catch(error => console.error('Error fetching packages:', error));
+    }
+
+    function applyForPackage(packageId) {
+        fetch('/application', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'packageId=' + packageId
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Application successful!');
+            } else {
+                alert('Failed to apply. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
+    }
+
+    function displayPackages(packages) {
+        const container = document.getElementById('packagesContainer');
+        container.innerHTML = ''; 
+
+        packages.forEach(pkg => {
+            const cardHtml = `
+                <div class="card bg-light text-light mb-3">
+                    <div class="card-body text-center">
+                        <img src="/images/City2.jpg" alt="Package Image">
+                        <h3 class="card-title mb-3">${pkg.name}</h3>
+                        <p class="card-text">Contact: ${pkg.contact}</p>
+                        <p class="card-text">Location: ${pkg.city}</p>
+                        <p class="card-text">Capacity: ${pkg.capacity}</p>
+                        <p class="card-text">${pkg.description}</p>
+                        <a href="/views/${pkg.packageId}" class="btn btn-primary">View</a>
+                        <button onclick="applyForPackage(${pkg.packageId})" class="btn btn-secondary">Apply Now</button>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += cardHtml;
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPackages);
+</script>
+  
+
+
+  <!-- <script>
     function loadPackages() {
       fetch('/api/packages')
         .then(response => response.json())
@@ -152,7 +210,7 @@
   
   
     document.addEventListener('DOMContentLoaded', loadPackages);
-  </script>
+  </script> -->
   
   
 

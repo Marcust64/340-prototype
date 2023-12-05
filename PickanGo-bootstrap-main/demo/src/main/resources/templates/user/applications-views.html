@@ -73,9 +73,69 @@
     </div>
   </div>
 </section>
+<!-- 
+<section class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <h1><span class="text-light">Application View</span></h1>
+        </div>
+    </div>
+</section> -->
+
+<section class="home py-5" id="home">
+    <div class="container-lg">
+        <div class="row min-vh-100 align-items-center">
+            <div class="col-md-6 mt-5 mt-md-0">
+                <div class="home-img text-center">
+                    <img src="/images/City1.jpg" class="w-100 rounded-3" alt="profile img">
+                </div>
+            </div>
+            <div class="col-md-6 mt-5 mt-md-0">
+                <div class="home-text">
+                    <div class="container my-4">
+                        <div th:if="${app != null}">
+                            <div class="mb-3">
+                                <label for="tourPackageName" class="form-label">Package Name:</label>
+                                <span th:text="${app.tourPackage.name}" class="form-control"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tourPackageCity" class="form-label">City:</label>
+                                <span th:text="${app.tourPackage.city}" class="form-control"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tourPackageContact" class="form-label">Contact:</label>
+                                <span th:text="${app.tourPackage.contact}" class="form-control"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tourPackageCapacity" class="form-label">Capacity:</label>
+                                <span th:text="${app.tourPackage.capacity}" class="form-control"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tourPackageDescription" class="form-label">Description:</label>
+                                <span th:text="${app.tourPackage.description}" class="form-control"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tourPackageService" class="form-label">Service:</label>
+                                <textarea class="form-control" id="tourPackageService" rows="5" readonly style="resize: none; overflow-y: auto;">
+                                    [[${app.tourPackage.service}]]
+                                </textarea>
+                            </div>
+                            
+                        </div>
+                        <div th:unless="${app != null}">
+                            <p>No application details available.</p>
+                        </div>
+                        <a th:href="@{/application/display}" class="btn btn-primary">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
  
  <!-- home section start -->
- <section class="home py-5" id="home">
+ <!-- <section class="home py-5" id="home">
     <div class="container-lg">
         <div class="row min-vh-100 align-items-center align-content-center">
             <div class="col-md-6 mt-5 mt-md-0">
@@ -120,7 +180,7 @@
             </div>
         </div>
     </div>
- </section>
+ </section> -->
  <!-- home section end -->
   
 

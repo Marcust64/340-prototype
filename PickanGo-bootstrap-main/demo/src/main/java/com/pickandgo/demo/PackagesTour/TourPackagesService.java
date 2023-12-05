@@ -45,14 +45,14 @@ public class TourPackagesService {
         return repo.save(packages);
     }
 
-    // Method to get all packages as DTOs
+    //  Get all packages as DTOs
     public List<TourPackagesDTO> getAllPackagesDTO() {
         return repo.findAll().stream()
                    .map(this::convertToDTO)
                    .collect(Collectors.toList());
     }
 
-    // Get all packages that match the keyword and convert to DTOs
+    // Get all packages and convert to DTOs
     public List<TourPackagesDTO> getAllPackagesDTO(String keyword) {
         if (keyword != null) {
             return repo.search(keyword).stream()
@@ -85,24 +85,23 @@ public class TourPackagesService {
     }
     
 
-    // Update a package while preserving some fields
+    
 public TourPackages updatePackage(TourPackagesDTO updatedPackageDTO) {
     Optional<TourPackages> existingPackageOpt = repo.findById(updatedPackageDTO.getPackageId());
 
     if (existingPackageOpt.isPresent()) {
         TourPackages existingPackage = existingPackageOpt.get();
 
-        // Update only specific fields
+        // Update fields
         existingPackage.setName(updatedPackageDTO.getName());
         existingPackage.setCity(updatedPackageDTO.getCity());
         existingPackage.setContact(updatedPackageDTO.getContact());
         existingPackage.setDescription(updatedPackageDTO.getDescription());
         existingPackage.setService(updatedPackageDTO.getService());
 
-        // Fields like 'capacity' and 'user' are not updated
+        
         return repo.save(existingPackage);
     } else {
-        // Handle the case where the package doesn't exist
         throw new RuntimeException("Package not found with id: " + updatedPackageDTO.getPackageId());
     }
 }

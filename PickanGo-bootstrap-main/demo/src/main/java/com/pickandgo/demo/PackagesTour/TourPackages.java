@@ -55,18 +55,4 @@ public class TourPackages {
 
     
 
-    // @Override
-    // public String toString() {
-    //     return "Package{" +
-    //         "packageId=" + packageId +
-    //         ", name='" + name + '\'' +
-    //         ", city='" + city + '\'' +
-    //         ", contact='" + contact + '\'' +
-    //         ", capacity=" + capacity +
-    //         ", description='" + description + '\'' +
-    //         ", service='" + service + '\'' +
-    //         ", user=" + (user != null ? user.toString() : "null") + // Modify toString to include user
-    //         '}';
-    // }
-
 }

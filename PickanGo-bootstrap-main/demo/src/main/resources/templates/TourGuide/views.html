@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
 <html lang="en">
 <head>
     <title>View Package</title>
@@ -64,12 +66,11 @@
 
     <!-- Package Details Section -->
     <section class="home py-5" id="home" th:if="${package != null}">
-        <div class="container-lg">
+        <div class="container-lg py-5">
             <div class="row min-vh-100 align-items-center align-content-center">
                 <div class="col-md-6 mt-5 mt-md-0">
-                    <!-- Image or other content -->
                 </div>
-                <div class="col-md-6 mt-5 mt-md-0 order-md-first">
+                <div class="col-md-8">
                     <div class="home-text">
                         <label for="pkgName" class="col-form-label">Name:</label>
                         <input id='packageName' name='name' type="text" class="form-control" th:value="${package.name}" placeholder="Package Name"/>
@@ -82,6 +83,11 @@
                         
                         <label for="pkgDescription" class="col-form-label">Description:</label>
                         <input id='packageDescription' name='description' type="text" class="form-control" th:value="${package.description}" placeholder="Brief Description"/>
+
+                        
+                            <label>Users Who Applied:</label>
+                            <span class="form-control" th:text="${usernames}">Usernames will be displayed here</span>
+                        
                         
                         <label for="pkgService" class="col-form-label">Services:</label>
                         <textarea class="form-control" id="pkgService" name="service" rows="5" th:text="${package.service}"></textarea>
@@ -89,6 +95,10 @@
                         <button type="button" class="btn btn-success px-3 mt-3" onclick="savePackage()">Save</button>
                     </div>
                 </div>
+
+
+
+  
             </div>
         </div>
     </section>
@@ -96,6 +106,8 @@
     <div th:if="${package == null}">
         <p class="text-center">Package not found.</p>
     </div>
+
+
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script>
