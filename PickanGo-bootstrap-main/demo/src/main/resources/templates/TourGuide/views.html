@@ -135,5 +135,17 @@
             });
         }
     </script>
+
+    <!--  GoogleMapsAPI for auto complete -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7iHWNKRtHYhWXAciNjGRrroUyyE3N8Nk&libraries=places&callback=initAutocomplete" async defer></script>
+
+
+<script>
+  function initAutocomplete() {
+    var input = document.getElementById('packageLocation');
+    new google.maps.places.Autocomplete(input);
+}
+</script>
+
 </body>
 </html>

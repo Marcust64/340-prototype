@@ -218,15 +218,6 @@
 <script>
   let allPackages = []; // Array to hold all packages
 
-  // function loadPackages() {
-  //   fetch('/api/packages')
-  //   .then(response => response.json())
-  //   .then(packages => {
-  //       allPackages = packages; // Store all packages
-  //       displayPackages(packages); // Display all packages initially
-  //   })
-  //   .catch(error => console.error('Error fetching packages:', error));
-  // }
 
   function loadPackages() {
     fetch('/api/my-packages')
