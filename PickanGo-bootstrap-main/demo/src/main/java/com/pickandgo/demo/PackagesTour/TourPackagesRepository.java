@@ -11,7 +11,8 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface TourPackagesRepository extends JpaRepository<TourPackages, Long> {
     
-  List<TourPackages> findByUser_UserId(Long userId);
+    List<TourPackages> findByUser_UserId(Long userId);
+
 
      public List<TourPackages> findByName(String name);
      

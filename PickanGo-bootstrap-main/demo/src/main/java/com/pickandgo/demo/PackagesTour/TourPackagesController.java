@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.pickandgo.demo.user.User;
 import com.pickandgo.demo.user.UserService;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,6 +85,21 @@ public ResponseEntity<List<TourPackagesDTO>> getAllPackages() {
      } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
+}
+
+// Only the users Packages
+@GetMapping("/api/my-packages")
+public ResponseEntity<List<TourPackagesDTO>> getMyPackages(Principal principal) {
+    if (principal != null) {
+        Optional<User> currentUser = userService.findByEmail(principal.getName());
+        if (currentUser.isPresent()) {
+            Long userId = currentUser.get().getUserId();
+            List<TourPackagesDTO> userPackages = packageService.getPackagesForCurrentUser(userId);
+            return ResponseEntity.ok(userPackages);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // User not found
+    }
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // User not logged in
 }
 
 

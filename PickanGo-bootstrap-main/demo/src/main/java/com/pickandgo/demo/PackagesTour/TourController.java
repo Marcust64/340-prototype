@@ -89,7 +89,7 @@ import java.util.stream.Collectors;
 import com.pickandgo.demo.user.*;
 
 @Controller
-public class LibraryController {
+public class TourController {
 
     @Autowired
     private final TourPackagesService packageService;
@@ -98,7 +98,7 @@ public class LibraryController {
     private UserService userService;
 
     @Autowired
-    public LibraryController(TourPackagesService packageService) {
+    public TourController(TourPackagesService packageService) {
         this.packageService = packageService;
     }
 
@@ -108,10 +108,9 @@ public class LibraryController {
         return "TourGuide/index";
     }
 
-       @GetMapping("/TourGuide/library")
+    @GetMapping("/TourGuide/library")
     public String library(Model model, Principal principal) {
         if (principal != null) {
-            // Fetch the current user
             Optional<User> currentUser = userService.findByEmail(principal.getName());
             if (currentUser.isPresent()) {
                 Long userId = currentUser.get().getUserId();
