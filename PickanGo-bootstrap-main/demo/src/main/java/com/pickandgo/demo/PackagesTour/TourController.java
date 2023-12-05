@@ -103,10 +103,7 @@ public class TourController {
     }
 
 
-    @GetMapping("/TourGuide/index")
-    public String showHome() {
-        return "TourGuide/index";
-    }
+ 
 
     @GetMapping("/TourGuide/library")
     public String library(Model model, Principal principal) {
@@ -133,6 +130,30 @@ public class TourController {
         return "redirect:/TourGuide/library";
     }
 
+
+
+
+    @GetMapping("/TourGuide/index")
+    public String showHome() {
+        return "TourGuide/index";
+    }
+
+    @GetMapping("/TourGuide/faq")
+    public String showFaq() {
+        return "TourGuide/faq";
+    }
+
+    @GetMapping("/TourGuide/contact")
+    public String showContact() {
+        return "TourGuide/contact";
+    }
+
+    @GetMapping("/TourGuide/searchresults")
+    public String showResults(){
+        return "TourGuide/searchresults";
+    }
+
+    
 
 }
 

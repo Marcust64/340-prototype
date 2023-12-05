@@ -31,12 +31,21 @@ public class ViewsController {
         return "TourGuide/views"; 
     }
 
-    
 
-    @GetMapping("/contact")
-    public String showContact(){
-        return "contact";
+    @GetMapping("/TourGuide/pkgview/{packageId}")
+    public String showSearchView(@PathVariable Long packageId, Model model) {
+        Optional<TourPackagesDTO> packageOpt = packagesService.getPackageDTO(packageId);
+        if (packageOpt.isPresent()) {
+            TourPackagesDTO packageDTO = packageOpt.get();
+            model.addAttribute("package", packageDTO);
+        } else {
+
+        }
+        return "TourGuide/pkgview";
     }
+
+    
+ 
     
     
 
