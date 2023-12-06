@@ -31,6 +31,20 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
+   @GetMapping("/faq-admin")
+public String showUsers(Model model) {
+    List<User> userList = service.getAllUsers();
+    System.out.println("User List Size: " + userList.size()); // Print the size of the user list
+    model.addAttribute("userList", userList);
+    return "faq-admin";
+}
+
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam Long userId) {
+        service.deleteUser(userId);
+        return "redirect:/users";
+    }
+    
     @GetMapping("/sign")
     public String showSignInForm() {      
         return "sign";
