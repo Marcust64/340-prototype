@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <title>Pick and Go</title>
@@ -9,15 +9,15 @@
   <!-- ** CSS Plugins Needed for the Project ** -->
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
   <!-- themefy-icon -->
-  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
   <!--Favicon-->
-  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="/images/favicon.png" type="image/x-icon">
   <!-- fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
   <!-- Main Stylesheet -->
-  <link href="assets/style.css" rel="stylesheet" media="screen" />
+  <link href="/assets/style.css" rel="stylesheet" media="screen" />
 </head>
 
 <body>
@@ -25,7 +25,7 @@
   <header class="shadow-bottom sticky-top bg-white">
     <nav class="navbar navbar-expand-md navbar-light">
       <div class="container">
-        <a class="navbar-brand px-2" href="index.html">Pick and Go</a>
+        <a class="navbar-brand px-2" href="/Admin/index">Pick and Go</a>
         <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -34,32 +34,29 @@
         <div class="collapse navbar-collapse text-center" id="navigation">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link text-dark" href="index.html">Home</a>
+              <a class="nav-link text-dark" href="/Admin/index">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" href="library.html">My Library</a>
+              <a class="nav-link text-dark" href="/Admin/library">My Library</a>
           </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" href="faq.html">How it works</a>
+              <a class="nav-link text-dark" href="/Admin/faq-admin">How it works</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" href="contact.html">Contact</a>
+              <a class="nav-link text-dark" href="/Admin/contact-admin">Contact</a>
             </li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" href="sign.html">Sign in</a>
-						</li>
+					
 
+            <!-- DropMenu -->
             <div class="dropdown">
-							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
-								<img src="images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="/images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
 								<strong class="text-dark">Admin</strong>
 							</a>
 							<ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
-								<li><a class="dropdown-item" href="faq.html">Tour Guide</a></li>
-								<li><a class="dropdown-item" href="faq.html">User</a></li>
-								<li><a class="dropdown-item" href="#">Admin</a></li>
-								<li><hr class="dropdown-divider"></li>
+							 <li><a class="dropdown-item" href="/logout">Logout</a></li>
 							</ul>
+
           </ul>
         </div>
       </div>
@@ -68,31 +65,6 @@
   <!-- /header -->
 
   <!-- faq -->
-  <section class="section pb-0">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="section-title text-primary">Frequently Asked Questions</h2>
-
-          <!-- FAQ Form for Admin -->
-          <form id="faqForm">
-            <div class="form-group">
-              <label for="newQuestion">Add a New Question:</label>
-              <input type="text" class="form-control" id="newQuestion" placeholder="Enter your question" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-
-          <!-- accordion -->
-          <div id="accordion">
-            <!-- Existing FAQ items ... -->
-
-            <!-- Add new FAQ item here dynamically -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
   <section class="section pb-0">
     <div class="container">
       <div class="row">
@@ -179,6 +151,47 @@
     </div>
   </section>
   <!-- /faq -->
+  <!-- Users Section -->
+<section class="section pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title text-primary">User Management</h2>
+        
+        <!-- Display Users -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Email</th>
+              <th>Username</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Use Thymeleaf to iterate over userList and display each user -->
+            <tr th:each="user : ${userList}">
+        <td th:text="${user.userId}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.username}"></td>
+        <td>
+            <!-- Add buttons for actions (e.g., edit and delete) -->
+            <form method="post" th:action="@{/deleteUser}">
+                <input type="hidden" name="userId" th:value="${user.userId}" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+
+                <!-- You can add similar forms/buttons for other actions (e.g., edit) -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+  </div>
+</section>
+  
 
   <!-- footer -->
   <footer class="section pb-4">
@@ -200,58 +213,19 @@
         </div>
       </div>
     </div>
-	<script>
-    // Handle the form submission for adding a new FAQ item
-    document.getElementById("faqForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const newQuestionInput = document.getElementById("newQuestion");
-      const newQuestion = newQuestionInput.value;
-
-      if (newQuestion) {
-        // Create a new FAQ item and append it to the accordion
-        const newFaqItem = createFaqItem(newQuestion);
-        const accordion = document.getElementById("accordion");
-        accordion.appendChild(newFaqItem);
-
-        // Clear the input field
-        newQuestionInput.value = "";
-      }
-    });
-
-    // Function to create a new FAQ item
-    function createFaqItem(question) {
-      const faqItem = document.createElement("div");
-      faqItem.classList.add("card", "mb-4", "rounded-0", "shadow", "border-0");
-
-      faqItem.innerHTML = `
-        <div class="card-header rounded-0 bg-white border p-0 border-0">
-          <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between" data-toggle="collapse" href="#faq-${Date.now()}">
-            <span>${question}</span> <i class="ti-plus text-primary text-right"></i>
-          </a>
-        </div>
-        <div id="faq-${Date.now()}" class="collapse" data-parent="#accordion">
-          <div class="card-body font-secondary text-color">This is the answer to the new question.</div>
-        </div>
-      `;
-
-      return faqItem;
-    }
-  </script>
   </footer>
   <!-- /footer -->
 
   <!-- ** JS Plugins Needed for the Project ** -->
   <!-- jquiry -->
-  <script src="plugins/jquery/jquery-1.12.4.js"></script>
+  <script src="/plugins/jquery/jquery-1.12.4.js"></script>
   <!-- Bootstrap JS -->
-  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <script src="/plugins/bootstrap/bootstrap.min.js"></script>
   <!-- match-height JS -->
-  <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+  <script src="/plugins/match-height/jquery.matchHeight-min.js"></script>
   <!-- Main Script -->
-  <script src="assets/script.js"></script>
+  <script src="/assets/script.js"></script>
 </body>
 
 </html>
 
-</html>

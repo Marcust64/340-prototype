@@ -41,4 +41,8 @@ public class UserService {
         repo.deleteById(id);
 
     }
+    public List<User> getAllUsers() {
+        List<User> userList = repo.findAll();
+        return userList;
+    }
 }
