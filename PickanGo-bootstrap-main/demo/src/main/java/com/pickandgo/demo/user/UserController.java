@@ -63,6 +63,12 @@ public class UserController {
         return "views";
     }
 
+    @GetMapping("/contact")
+    public String showContact(@RequestParam String param) {
+        return "contact";
+    }
+    
+
      @PostMapping("/signup")
      public String signUp(User user) {
          

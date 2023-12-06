@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.Optional;
 import com.pickandgo.demo.Applications.ApplicationService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -68,6 +70,9 @@ public String showPackageDetails(@PathVariable Long packageId, Model model) {
     }
 
     
+ 
+    
+
  
     
     

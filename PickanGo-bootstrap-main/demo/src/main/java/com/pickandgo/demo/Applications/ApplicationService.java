@@ -122,6 +122,9 @@ public String getUsernamesAsStringByPackageId(Long packageId) {
                        .collect(Collectors.joining(", ")); 
 }
 
+public List<Application> search(String keyword) {
+    return applicationRepository.search(keyword);
+}
 
 
 }

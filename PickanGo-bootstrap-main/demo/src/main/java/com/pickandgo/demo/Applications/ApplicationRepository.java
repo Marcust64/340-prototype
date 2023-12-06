@@ -32,8 +32,10 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
 
     List<Application> findByTourPackage_PackageId(Long packageId);
 
+    // public List<Application> findByName(String name);
+
 
     @Query("SELECT a FROM Application a WHERE CONCAT(a.tourPackage.name, ' ', a.tourPackage.city) LIKE %?1%")
-    List<Application> search(String keyword);
+    public List<Application> search(String keyword);
 
 }

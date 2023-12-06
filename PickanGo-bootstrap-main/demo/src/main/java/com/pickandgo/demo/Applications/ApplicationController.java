@@ -109,7 +109,9 @@ import com.pickandgo.demo.user.UserService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -180,6 +182,22 @@ public String viewApplication(Model model, @PathVariable Long id) {
         service.deletePackage(packageId);
         return "redirect:/application/display";
     }
+
+ @GetMapping("application/search")
+    public String getPackage(Model model, @Param("keyword") String keyword) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String currentUserName = authentication.getName();
+    Optional<User> user = userService.findByEmail(currentUserName);
+
+    // Call the search method with the provided keyword
+    List<Application> searchResults = service.search(keyword);
+
+    model.addAttribute("packageList", searchResults);
+    model.addAttribute("keyword", keyword);
+    return "user/applications-user";
+}
+    
+
 
 }
 

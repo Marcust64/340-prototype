@@ -125,7 +125,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                .requestMatchers("/", "/sign", "/index", "/searchresults", "/api/packages", "/signup", "/views" , "/contact", "/faq" , "/plugins/**", "/assets/**", "/images/**", "/403").permitAll()
+                .requestMatchers("/", "/sign", "/index", "/searchresults", "/api/packages", "/signup" , "/contact", "/faq" , "/plugins/**", "/assets/**", "/images/**", "/403").permitAll()
                 .requestMatchers("/user/**").hasAuthority("USER")
                 .requestMatchers("/TourGuide/**").hasAuthority("TOURGUIDE")
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
