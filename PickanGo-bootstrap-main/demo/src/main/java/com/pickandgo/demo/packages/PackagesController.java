@@ -13,115 +13,118 @@ import com.pickandgo.demo.user.UserService;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ *
+ * @author Marcus Thompson
+ */
 @Controller
 public class PackagesController {
-    
+
     @Autowired
     private PackagesService packageService;
-    
+
     @Autowired
     private UserService userService;
- 
 
-        @GetMapping("/user/library-user")
-        public String getAllPackages(Model model) {
+    @GetMapping("/user/library-user")
+    //Gets all packages in that specific users library
+    public String getAllPackages(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
         Optional<User> user = userService.findByEmail(currentUserName);
         model.addAttribute("packageList", packageService.getUserPackages(null, user.get()));
         return "user/library-user";
     }
-    
 
     @GetMapping("/search")
+    //searches packages by keyword in repository
     public String getPackage(Model model, @Param("keyword") String keyword) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
         Optional<User> user = userService.findByEmail(currentUserName);
-        
-         List<Packages> searchResults = packageService.search(keyword);
-         
-         model.addAttribute("packageList", searchResults);
+
+        List<Packages> searchResults = packageService.search(keyword);
+
+        model.addAttribute("packageList", searchResults);
         model.addAttribute("keyword", keyword);
         return "user/library-user";
     }
 
     @GetMapping("/user/delete/id={packageId}")
+    //deletes specific package by ID
     public String deletePackage(@PathVariable long packageId, Model model) {
         packageService.deletePackage(packageId);
         return "redirect:/user/library-user";
     }
 
     @GetMapping("/user/create-user")
-    public String showCreateForm(){
+    public String showCreateForm() {
         return "user/create-user";
     }
-    
-    
+
     @PostMapping("/package/create")
+    //saves new package in repository
     public String createPackage(@RequestParam String name,
-                                @RequestParam String city,
-                                @RequestParam String description,
-                                RedirectAttributes redirectAttributes) {
-    
-            Packages newPackage = new Packages();
-            newPackage.setName(name);
-            newPackage.setCity(city);
-            newPackage.setDescription(description);
+            @RequestParam String city,
+            @RequestParam String description,
+            RedirectAttributes redirectAttributes) {
 
-            // Set the user who creates the package
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String currentUserName = authentication.getName();
-            Optional<User> user = userService.findByEmail(currentUserName);
-            user.ifPresent(newPackage::setUser);
+        Packages newPackage = new Packages();
+        newPackage.setName(name);
+        newPackage.setCity(city);
+        newPackage.setDescription(description);
 
-            packageService.savePackage(newPackage);
+        // Set the user who creates the package
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        Optional<User> user = userService.findByEmail(currentUserName);
+        user.ifPresent(newPackage::setUser);
 
+        packageService.savePackage(newPackage);
 
-            // Redirect to the library page
-            return "redirect:/user/library-user";
-        }
- 
+        // Redirect to the library page
+        return "redirect:/user/library-user";
+    }
 
     @GetMapping("/user/update/id={packageId}")
+    //Displays edit page for that package for specific id
     public String updatePackageForm(@PathVariable long packageId, Model model) {
-    Optional<Packages> packageOptional = packageService.getPackage(packageId);
-    model.addAttribute("package", packageOptional.orElse(null));
-    return "user/views-user";
+        Optional<Packages> packageOptional = packageService.getPackage(packageId);
+        model.addAttribute("package", packageOptional.orElse(null));
+        return "user/views-user";
     }
 
     @PostMapping("/update/id={packageId}")
+    //Saves changes made to package in the repository
     public String updatePackage(@PathVariable long packageId, @ModelAttribute Packages packages) {
+        Optional<Packages> packageOptional = packageService.getPackage(packageId);
+        packageOptional.ifPresent(existingPackage -> {
+            existingPackage.setName(packages.getName());
+            existingPackage.setCity(packages.getCity());
+            existingPackage.setDescription(packages.getDescription());
 
-    Optional<Packages> packageOptional = packageService.getPackage(packageId);
-    packageOptional.ifPresent(existingPackage -> {
-    existingPackage.setName(packages.getName());
-    existingPackage.setCity(packages.getCity());
-    existingPackage.setDescription(packages.getDescription());
-    
-    packageService.savePackage(existingPackage);
-    });
-    return "redirect:/user/library-user";
+            packageService.savePackage(existingPackage);
+        });
+        return "redirect:/user/library-user";
     }
 
-    
     @GetMapping("/user/contact-user")
-    public String showContactForm(){
+    public String showContactForm() {
         return "user/contact-user";
     }
-   
-     @GetMapping("/user/faq-user")
-    public String showFaqForm(){
+
+    @GetMapping("/user/faq-user")
+    public String showFaqForm() {
         return "user/faq-user";
     }
-    
-     @GetMapping("/user/index-user")
-    public String showHomePage(){
+
+    @GetMapping("/user/index-user")
+    public String showHomePage() {
         return "user/index-user";
     }
 
     @GetMapping("/user/views-user")
-    public String showEditForm(){
+    public String showEditForm() {
         return "user/views-user";
     }
 

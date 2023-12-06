@@ -1,189 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-<head>
-  <title>View Package</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- ** CSS Plugins Needed for the Project ** -->
+    <head>
+        <title>View Package</title>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <!-- ** CSS Plugins Needed for the Project ** -->
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
-  <!-- themefy-icon -->
-  <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
-  <!--Favicon-->
-  <link rel="icon" href="/images/favicon.png" type="image/x-icon">
-  <!-- fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-  <!-- Main Stylesheet -->
-  <link href="../assets/style.css" rel="stylesheet" media="screen" />
-  <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-</head>
-<body class="bg-light">
-   <header class="shadow-bottom sticky-top bg-white">
-      <nav class="navbar navbar-expand-md navbar-light">
-          <div class="container">
-              <a class="navbar-brand px-2" href="index.html">Pick and Go</a>
-              <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
-                  aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
+                <!-- Bootstrap -->
+                <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+                    <!-- themefy-icon -->
+                    <link rel="stylesheet" href="/plugins/themify-icons/themify-icons.css">
+                        <!--Favicon-->
+                        <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+                            <!-- fonts -->
+                            <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+                                <!-- Main Stylesheet -->
+                                <link href="../assets/style.css" rel="stylesheet" media="screen" />
+                                <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+                                    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+                                        </head>
+                                        <body class="bg-light">
+                                            <header class="shadow-bottom sticky-top bg-white">
+                                                <nav class="navbar navbar-expand-md navbar-light">
+                                                    <div class="container">
+                                                        <a class="navbar-brand px-2" href="index.html">Pick and Go</a>
+                                                        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+                                                                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                                                            <span class="navbar-toggler-icon"></span>
+                                                        </button>
 
-              <div class="collapse navbar-collapse text-center" id="navigation">
-                  <ul class="navbar-nav ml-auto">
-                      <a class="nav-link text-dark" href="/user/index-user">Home</a>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/user/library-user">My Library</a>
-                        </li>
-						<li class="nav-item">
-                            <a class="nav-link text-dark" href="/application/display">Applications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/user/faq-user">How it works</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/user/contact-user">Contact</a>
-                        </li>
-                      <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
-                          <img src="/images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
-                          <strong class="text-dark">User</strong>
-                        </a>
-							<ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
-							 <li><a class="dropdown-item" href="/logout">Logout</a></li>
-							</ul>
-                      </div>
-                  </ul>
-              </div>
-          </div>
-      </nav>
-  </header>
+                                                        <div class="collapse navbar-collapse text-center" id="navigation">
+                                                            <ul class="navbar-nav ml-auto">
+                                                                <a class="nav-link text-dark" href="/user/index-user">Home</a>
 
-  <section
-  class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
->
-  <div class="container" id="toptitle">
-    <div class="d-sm-flex align-items-center justify-content-between">
-      <div>
-        <h1><span class="text-light"> Application View </span></h1>
-        
-        
-      </div>
-    </div>
-  </div>
-</section>
-<!-- 
-<section class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
-    <div class="container">
-        <div class="d-sm-flex align-items-center justify-content-between">
-            <h1><span class="text-light">Application View</span></h1>
-        </div>
-    </div>
-</section> -->
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link text-dark" href="/user/library-user">My Library</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link text-dark" href="/application/display">Applications</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link text-dark" href="/user/faq-user">How it works</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link text-dark" href="/user/contact-user">Contact</a>
+                                                                </li>
+                                                                <div class="dropdown">
+                                                                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="usr3" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <img src="/images/avatar.png" alt="" width="32" height="32" class="rounded-circle me-3">
+                                                                            <strong class="text-dark">User</strong>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu text-small shadow" aria-labelledby="usr2">
+                                                                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </nav>
+                                            </header>
 
-<section class="home py-5" id="home">
-    <div class="container-lg">
-        <div class="row min-vh-100 align-items-center">
-            <div class="col-md-6 mt-5 mt-md-0">
-                <div class="home-img text-center">
-                    <img src="/images/City1.jpg" class="w-100 rounded-3" alt="profile img">
-                </div>
-            </div>
-            <div class="col-md-6 mt-5 mt-md-0">
-                <div class="home-text">
-                    <div class="container my-4">
-                        <div th:if="${app != null}">
-                            <div class="mb-3">
-                                <label for="tourPackageName" class="form-label">Package Name:</label>
-                                <span th:text="${app.tourPackage.name}" class="form-control"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tourPackageCity" class="form-label">City:</label>
-                                <span th:text="${app.tourPackage.city}" class="form-control"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tourPackageContact" class="form-label">Contact:</label>
-                                <span th:text="${app.tourPackage.contact}" class="form-control"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tourPackageCapacity" class="form-label">Capacity:</label>
-                                <span th:text="${app.tourPackage.capacity}" class="form-control"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tourPackageDescription" class="form-label">Description:</label>
-                                <span th:text="${app.tourPackage.description}" class="form-control"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tourPackageService" class="form-label">Service:</label>
-                                <textarea class="form-control" id="tourPackageService" rows="5" readonly style="resize: none; overflow-y: auto;">
+                                            <section
+                                                class="bg-primary text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start"
+                                                >
+                                                <div class="container" id="toptitle">
+                                                    <div class="d-sm-flex align-items-center justify-content-between">
+                                                        <div>
+                                                            <h1><span class="text-light"> Application View </span></h1>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section class="home py-5" id="home">
+                                                <div class="container-lg">
+                                                    <div class="row min-vh-100 align-items-center">
+                                                        <div class="col-md-6 mt-5 mt-md-0">
+                                                            <div class="home-img text-center">
+                                                                <img src="/images/City1.jpg" class="w-100 rounded-3" alt="profile img">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 mt-5 mt-md-0">
+                                                            <div class="home-text">
+                                                                <div class="container my-4">
+                                                                    <div th:if="${app != null}">
+                                                                        <div class="mb-3">
+                                                                            <label for="tourPackageName" class="form-label">Package Name:</label>
+                                                                            <span th:text="${app.tourPackage.name}" class="form-control"></span>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="tourPackageCity" class="form-label">City:</label>
+                                                                            <span th:text="${app.tourPackage.city}" class="form-control"></span>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="tourPackageContact" class="form-label">Contact:</label>
+                                                                            <span th:text="${app.tourPackage.contact}" class="form-control"></span>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="tourPackageCapacity" class="form-label">Capacity:</label>
+                                                                            <span th:text="${app.tourPackage.capacity}" class="form-control"></span>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="tourPackageDescription" class="form-label">Description:</label>
+                                                                            <span th:text="${app.tourPackage.description}" class="form-control"></span>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="tourPackageService" class="form-label">Service:</label>
+                                                                            <textarea class="form-control" id="tourPackageService" rows="5" readonly style="resize: none; overflow-y: auto;">
                                     [[${app.tourPackage.service}]]
-                                </textarea>
-                            </div>
-                            
-                        </div>
-                        <div th:unless="${app != null}">
-                            <p>No application details available.</p>
-                        </div>
-                        <a th:href="@{/application/display}" class="btn btn-primary">Back</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                                                                            </textarea>
+                                                                        </div>
 
- 
- <!-- home section start -->
- <!-- <section class="home py-5" id="home">
-    <div class="container-lg">
-        <div class="row min-vh-100 align-items-center align-content-center">
-            <div class="col-md-6 mt-5 mt-md-0">
-               <div class="home-img text-center">
-                  <img src="/images/City1.jpg" class=" w-100 rounded-3" alt="profile img">
-               </div>
-            </div>
-            <div class="col-md-6 mt-5 mt-md-0 order-md-first">
-               <div class="home-text">
-                  <div class="container my-4">
-        
-        <form th:action="@{'application/id=' + ${package != null ? package.packageId : null}}" method="get">
-            <label for="packageName" class="form-label">Application Name:</label>
-        <span th:text="${package.name}" class="form-control"></span>
-		</div>
-		<div class="mb-3">
-        <label for="city" class="form-label">City:</label>
-        <span th:text="${package.city}" class="form-control"></span>
-		</div>
-		<div class="mb-3">
-        <label for="description" class="form-label">Contact:</label>
-        <span th:text="${package.contact}" class="form-control"></span>
-		</div>
-		<div class="mb-3">
-        <label for="description" class="form-label">capacity:</label>
-        <span th:text="${package.capacity}" class="form-control"></span>
-		</div>
-		<div class="mb-3">
-        <label for="description" class="form-label">Travel Information:</label>
-        <span th:text="${package.description}" class="form-control"></span>
-		</div>
-		<div class="mb-3">
-        <label for="description" class="form-label">Service:</label>
-        <span th:text="${package.service}" class="form-control"></span>
-		</div>
-            <a th:href="@{/application/display}" class="btn btn-primary">Back</a>
-        </form>
-    </div>
+                                                                    </div>
+                                                                    <div th:unless="${app != null}">
+                                                                        <p>No application details available.</p>
+                                                                    </div>
+                                                                    <a th:href="@{/application/display}" class="btn btn-primary">Back</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
 
-               </div>
-
-            </div>
-        </div>
-    </div>
- </section> -->
- <!-- home section end -->
-  
-
-<script src="/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+                                            <script src="/js/bootstrap.bundle.min.js"></script>
+                                        </body>
+                                        </html>

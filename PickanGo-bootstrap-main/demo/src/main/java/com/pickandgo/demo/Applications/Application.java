@@ -15,12 +15,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
  *
- * @author Marcus Thompson
+ * @author Marcus Thompson, Kenneth Alvarado
  */
-
 @Entity
 @Table(name = "applications")
 @NoArgsConstructor
@@ -28,29 +26,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Application {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "application_id")
     private long packageId;
-    
-    // @Column(name = "name")
-    // private String name;
-
-    // @Column(name = "city")
-    // private String city;
-
-    // @Column(name = "contact")
-    // private String contact;
-
-    // @Column(name = "capacity")
-    // private int capacity;
-
-    // @Column(name = "description")
-    // private String description;
-
-    // @Column(name = "service")
-    // private String service;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
